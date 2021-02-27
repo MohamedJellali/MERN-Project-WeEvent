@@ -1,0 +1,4 @@
+{
+    "MONGO_URI" : "mongodb+srv://MJ:Med2407@prjectmern.be68g.mongodb.net/MyDB?retryWrites=true&w=majority",
+    "secretOrKey" : "mykey"
+}
