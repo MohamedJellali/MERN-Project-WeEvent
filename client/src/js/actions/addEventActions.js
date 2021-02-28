@@ -19,6 +19,10 @@ export const addEvent = (formData) => async (dispatch) => {
     });
   } catch (error) {
     console.log("err in actions dispatch add event", error);
+    const errorsArray = error.response.data.errors;
+    if (Array.isArray(errorsArray)) {
+      errorsArray.forEach((err) => alert(err.msg));
+    }
     dispatch({
       type: ADDEVENT_ERROR,
     });

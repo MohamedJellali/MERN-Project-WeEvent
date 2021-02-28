@@ -10,7 +10,7 @@ function ProfileCard({ user }) {
     console.log(user._id);
     const formData = { userId: user._id };
     dispatch(deleteUser(formData));
-  };
+  }; 
   return (
     <div>
       <div className="col-md-4 animated fadeIn">

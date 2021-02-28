@@ -10,11 +10,20 @@ import {
   Label,
   Input,
 } from "reactstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { login } from "../../js/actions/authActions";
 
+
+
 const LoginModal = (props) => {
+
+  // const error = useSelector((state) => state.authReducer.error)
+  // console.log(error)
+  // const events = useSelector((state) => state.gettingReducer.events);
+
+
+
   const dispatch = useDispatch();
   let history = useHistory();
 
@@ -29,7 +38,6 @@ const LoginModal = (props) => {
   const handleConfim = () => {
     dispatch(login(formData));
     history.push("/dashboard");
-   
   };
 
   const toggle = () => setModal(!modal);

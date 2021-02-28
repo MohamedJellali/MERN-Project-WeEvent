@@ -13,6 +13,7 @@ const initState = {
   isAuth: false,
   isLoading: false,
   msg: null,
+  // error: null,
 };
 
 export default function (state = initState, { type, payload }) {
@@ -32,6 +33,8 @@ export default function (state = initState, { type, payload }) {
 
     case GET_AUTH_USER:
       return { ...state, isloading: false, isAuth: true, ...payload };
+    // case AUTH_ERROR:
+    //   return { ...state, isloading: false, isAuth: false, error: payload };
 
     default:
       return state;

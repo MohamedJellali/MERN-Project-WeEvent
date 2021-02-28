@@ -21,6 +21,10 @@ export const register = (formData) => async (dispatch) => {
     });
   } catch (error) {
     console.log("err in actions dispatch register", error);
+    const errorsArray = error.response.data.errors;
+    if (Array.isArray(errorsArray)) {
+      errorsArray.forEach((err) => alert(err.msg));
+    }
     dispatch({
       type: AUTH_ERROR,
     });
@@ -32,8 +36,8 @@ export const login = (formData) => async (dispatch) => {
   dispatch(setLoading);
   try {
     const res = await axios.post("/api/auth/login", formData);
-    
-    //register user
+
+    //login user
     dispatch({
       type: LOGIN_USER,
       payload: res.data, // our res.data is : //auth.js line 73 // { msg: "Welcome, Login Success", user, token: `Bearer ${token}` };
@@ -46,6 +50,7 @@ export const login = (formData) => async (dispatch) => {
     }
     dispatch({
       type: AUTH_ERROR,
+      // payload: errorsArray,
     });
   }
 };

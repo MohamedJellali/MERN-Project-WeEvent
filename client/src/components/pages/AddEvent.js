@@ -3,6 +3,7 @@ import { FormGroup, Label, Input, FormText } from "reactstrap";
 import { addEvent } from "../../js/actions/addEventActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import ModalAlert from './ModalAlert'
 
 function AddEvent() {
   const user = useSelector((state) => state.authReducer.user);
@@ -54,7 +55,8 @@ function AddEvent() {
   }
   const handleAddClick = () => {
     if (verifyEmpty(formData) != 0) {
-      alert("Please fullfill all fields");
+      // <ModalAlert text={"Please fullfill all fields"} />
+      alert("Please fullfill all fields"); 
     }
     else if(formData.description.length < 12) {
       alert("please describe the event in more than 12 characters")
