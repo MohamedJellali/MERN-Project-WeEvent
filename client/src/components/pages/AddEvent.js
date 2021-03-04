@@ -3,7 +3,7 @@ import { FormGroup, Label, Input, FormText } from "reactstrap";
 import { addEvent } from "../../js/actions/addEventActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import ModalAlert from './ModalAlert'
+import ModalAlert from "./ModalAlert";
 
 function AddEvent() {
   const user = useSelector((state) => state.authReducer.user);
@@ -19,7 +19,7 @@ function AddEvent() {
     governorate: "",
     date: "",
     organizer: `${user.name} ${user.lastName}`,
-    participant: [`${user._id}`,],
+    participant: [`${user._id}`],
   });
 
   const intializeData = () => {
@@ -33,7 +33,7 @@ function AddEvent() {
       governorate: "",
       date: "",
       organizer: `${user.name} ${user.lastName}`,
-      participant: [`${user._id}`, 'test'],
+      participant: [`${user._id}`, "test"],
     });
   };
 
@@ -56,10 +56,9 @@ function AddEvent() {
   const handleAddClick = () => {
     if (verifyEmpty(formData) != 0) {
       // <ModalAlert text={"Please fullfill all fields"} />
-      alert("Please fullfill all fields"); 
-    }
-    else if(formData.description.length < 12) {
-      alert("please describe the event in more than 12 characters")
+      alert("Please fullfill all fields");
+    } else if (formData.description.length < 12) {
+      alert("please describe the event in more than 12 characters");
     } else {
       dispatch(addEvent(formData));
       history.push(`${formData.activity}`);
@@ -69,6 +68,14 @@ function AddEvent() {
 
   return (
     <div>
+            <div
+        style={{
+          background:
+            "url(https://ca-times.brightspotcdn.com/dims4/default/bde3030/2147483647/strip/true/crop/2160x300+0+0/resize/1080x150!/quality/90/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F1a%2F1f%2Fb7c46b154772aabad3b12c020f11%2Fla-coronavirus-love-story-callout-dp-small2.jpg) no-repeat top center",
+          width: "100%",
+          height: "150px",
+        }}
+      ></div>
       <h1>Add event Page</h1>
       <div className="row m-2">
         <input
@@ -87,6 +94,7 @@ function AddEvent() {
           name="description"
           onChange={handleFormChange}
         />
+        <Label for="Category">Category</Label>
         <Input
           value={formData.category}
           type="select"
@@ -95,11 +103,13 @@ function AddEvent() {
           name="category"
           onChange={handleFormChange}
         >
-          <option>Select category</option>
+          <option></option>
           <option>Sports</option>
           <option>Outdoors</option>
           <option>Arts</option>
+          <option>Charity</option>
         </Input>
+        <Label for="Activity">Activity</Label>
         <Input
           value={formData.activity}
           type="select"
@@ -108,7 +118,7 @@ function AddEvent() {
           name="activity"
           onChange={handleFormChange}
         >
-          <option>Select activity</option>
+          <option></option>
           <option>Running</option>
           <option>Biking</option>
           <option>Fitness</option>
@@ -129,6 +139,7 @@ function AddEvent() {
           name="city"
           onChange={handleFormChange}
         />
+        <Label for="governorate">Governorate</Label>
         <Input
           value={formData.governorate}
           type="select"
@@ -137,7 +148,7 @@ function AddEvent() {
           name="governorate"
           onChange={handleFormChange}
         >
-          <option>Select governorate</option>
+          <option></option>
           <option>Tunis</option>
           <option>Sousse</option>
           <option>Sfax</option>

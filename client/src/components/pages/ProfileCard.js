@@ -10,11 +10,18 @@ function ProfileCard({ user }) {
     console.log(user._id);
     const formData = { userId: user._id };
     dispatch(deleteUser(formData));
-  }; 
+  };
   return (
     <div>
       <div className="col-md-4 animated fadeIn">
-        <div className="card">
+        <div
+          className="card"
+          style={{
+            width: "250px",
+            boxShadow: "0 0 4px 4px rgba(0,0,0,.2)",
+            marginTop: "30px",
+          }}
+        >
           <div className="card-body">
             <div className="avatar">
               <img

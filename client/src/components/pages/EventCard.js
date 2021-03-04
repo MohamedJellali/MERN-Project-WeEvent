@@ -135,7 +135,15 @@ export default function EventCard({ event }) {
   };
 
   return (
-    <Card className={classes.root}>
+    <Card
+      className={classes.root}
+      style={{
+        boxShadow: "0 0 1px 1px rgba(0,0,0,.2)",
+        marginTop: "30px",
+        backgroundColor: "#EFF0F1",
+        // "#FFCE01",
+      }}
+    >
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
@@ -159,16 +167,28 @@ export default function EventCard({ event }) {
         title={event.city}
         subheader={convertTimeHeader(event.date)}
       />
-      <CardMedia
+      <div style={{display:'flex', flexDirection: 'column', alignItems: 'center'}}>
+      {/* <CardMedia
         className={classes.media}
         image="https://www.gracepointwellness.org/images/root/carriehandstogether.jpg"
         title="Paella dish"
-      />
-      <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          <h4>{event.nameOfEvent}</h4>
+      /> */}
+     <img src="https://blog.mapmyrun.com/wp-content/uploads/2017/01/Why-Solo-Runners-Who-Should-Consider-a-Running-Group.jpg" alt='photo' height="200px"/>
+      <CardContent
+        style={{
+          width: "400px",
+          textAlign: "center",
+        }}
+      >
+        <Typography
+          variant="body2"
+          color="textSecondary"
+          component="p"
+        >
+          <h4 style={{ color: "black" }}>{event.nameOfEvent}</h4>
         </Typography>
       </CardContent>
+      </div>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />

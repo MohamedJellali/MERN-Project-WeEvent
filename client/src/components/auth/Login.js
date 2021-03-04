@@ -44,7 +44,15 @@ const LoginModal = (props) => {
 
   return (
     <div>
-      <Button color="primary" onClick={toggle}>
+      <Button style={{
+    backgroundColor: "Transparent",
+    backgroundRepeat: "no-repeat",
+    border: "none",
+    cursor:"pointer",
+    overflow: "hidden",
+    outline:"none",
+    color:"black",
+}} color="primary" onClick={toggle}>
         Login
       </Button>
       <Modal isOpen={modal} toggle={toggle}>

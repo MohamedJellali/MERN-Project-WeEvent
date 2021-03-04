@@ -44,10 +44,11 @@ export const login = (formData) => async (dispatch) => {
     });
   } catch (error) {
     console.log("err in actions dispatch login", error);
-    const errorsArray = error.response.data.errors;
-    if (Array.isArray(errorsArray)) {
-      errorsArray.forEach((err) => alert(err.msg));
-    }
+    alert('bad cridantials !!!')
+    // const errorsArray = error.response.data.errors;
+    // if (Array.isArray(errorsArray)) {
+    //   errorsArray.forEach((err) => alert(err.msg));
+    // }
     dispatch({
       type: AUTH_ERROR,
       // payload: errorsArray,

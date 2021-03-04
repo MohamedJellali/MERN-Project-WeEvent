@@ -20,6 +20,7 @@ import Painting from "./components/pages/artsPages/Painting";
 import Hiking from "./components/pages/outdoorsPages/Hiking";
 import Yoga from "./components/pages/outdoorsPages/Yoga";
 import AddEvent from "./components/pages/AddEvent";
+import SidebarCompnent from './components/pages/Sidebar'
 
 function App() {
   const dispatch = useDispatch();
@@ -29,6 +30,8 @@ function App() {
   }, []);
 
   return (
+    <div className="App">
+
     <BrowserRouter>
       <AppNavbar />
       <Switch>
@@ -49,6 +52,7 @@ function App() {
         <Route path="/add" component={AddEvent} />
       </Switch>
     </BrowserRouter>
+    </div>
   );
 }
 

@@ -11,10 +11,10 @@ import { useState } from "react";
 import EventCard from "./EventCard";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { makeStyles } from "@material-ui/core/styles";
-import CreateIcon from '@material-ui/icons/Create';
+import CreateIcon from "@material-ui/icons/Create";
 import Button from "@material-ui/core/Button";
-import UpdateEventModal from "./UpdateEventModal"
-
+import UpdateEventModal from "./UpdateEventModal";
+import './Dashboard.css'
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -63,56 +63,85 @@ const Dashboard = () => {
   } else if (user.role == "admin") {
     return (
       <div className="list">
+        <div
+          style={{
+            background:
+              "url(https://ca-times.brightspotcdn.com/dims4/default/bde3030/2147483647/strip/true/crop/2160x300+0+0/resize/1080x150!/quality/90/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F1a%2F1f%2Fb7c46b154772aabad3b12c020f11%2Fla-coronavirus-love-story-callout-dp-small2.jpg) no-repeat top center",
+            width: "100%",
+            height: "150px",
+          }}
+        ></div>
         <Button onClick={() => history.push("/")}>Home Page</Button>
         <h1>
           Admin {user.name} {user.lastName} : {user.email}
         </h1>
         <h3>Members List : </h3>
-        {console.log("hhhh", users)}
-        {users.map((user) =>
-          user.role != "admin" ? (
-            <ProfileCard key={user.id} user={user} />
-          ) : null
-        )}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-around",
+            flexWrap: "wrap",
+            margin: "80px 80px 40px 80px",
+          }}
+        >
+          {console.log("hhhh", users)}
+          {users.map((user) =>
+            user.role != "admin" ? (
+              <ProfileCard key={user.id} user={user} />
+            ) : null
+          )}
+        </div>
         <h4>My Events Created</h4>
-        {events.map((event) =>
-          event.organizer == `${user.name} ${user.lastName}` ? (
-            <div>
-              <EventCard key={event.id} event={event} />
-              <Button
-                variant="contained"
-                color="red"
-                className={classes.button}
-                startIcon={<DeleteIcon />}
-                onClick={() => {
-                  dispatch(deleteEvent(event._id));
-                }}
-              >
-                Delete
-              </Button>
-              
-              {/* <Button
-                variant="contained"
-                color="red"
-                className={classes.button}
-                startIcon={<CreateIcon />}
-                onClick={() => <UpdateEventModal event={event} /> }
-              >
-                Modify
-              </Button> */}
-              <UpdateEventModal event={event} />
-            </div>
-          ) : null
-        )}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-around",
+            flexWrap: "wrap",
+            margin: "80px 80px 40px 80px",
+          }}
+        >
+          {events.map((event) =>
+            event.organizer == `${user.name} ${user.lastName}` ? (
+              <div>
+                <EventCard key={event.id} event={event} />
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-around",
+                  }}
+                >
+                  <Button
+                    variant="contained"
+                    style={{
+                      backgroundColor: "#F4364C",
+                      color: "#FFFFFF",
+                    }}
+                    className={classes.button}
+                    startIcon={<DeleteIcon />}
+                    onClick={() => {
+                      dispatch(deleteEvent(event._id));
+                    }}
+                  >
+                    Delete
+                  </Button>
+                  <UpdateEventModal event={event} />
+                </div>
+              </div>
+            ) : null
+          )}
+        </div>
 
-        <h4>My Events that i participated in</h4>
+        {/* <h4>My Events that i participated in</h4>
         {events.map((event) =>
           event.participant.includes(user._id) ? (
             <div>
               <EventCard key={event.id} event={event} />
               <Button
                 variant="contained"
-                color="red"
+                style={{
+                  backgroundColor: "#F4364C",
+                  color: "#FFFFFF",
+                }}
                 className={classes.button}
                 startIcon={<DeleteIcon />}
                 onClick={() => {
@@ -123,16 +152,21 @@ const Dashboard = () => {
               </Button>
             </div>
           ) : null
-        )}
+        )} */}
 
         <h4>All Events : </h4>
+        <div className='listCard'>
         {events.map((event) =>
           true ? (
-            <div>
+            <div className="itemCardAll">
               <EventCard key={event.id} event={event} />
               <Button
                 variant="contained"
-                color="red"
+                style={{
+                  backgroundColor: "#F4364C",
+                  color: "#FFFFFF",
+                  width: '100px',
+                }}
                 className={classes.button}
                 startIcon={<DeleteIcon />}
                 onClick={() => {
@@ -144,6 +178,7 @@ const Dashboard = () => {
             </div>
           ) : null
         )}
+        </div>
       </div>
     );
   }
@@ -160,7 +195,10 @@ const Dashboard = () => {
             <EventCard key={event.id} event={event} />
             <Button
               variant="contained"
-              color="red"
+              style={{
+                backgroundColor: "#F4364C",
+                color: "#FFFFFF",
+              }}
               className={classes.button}
               startIcon={<DeleteIcon />}
               onClick={() => {
@@ -170,17 +208,6 @@ const Dashboard = () => {
               Delete
             </Button>
             <UpdateEventModal event={event} />
-            {/* <Button
-                variant="contained"
-                color="red"
-                className={classes.button}
-                startIcon={<CreateIcon />}
-                // onClick={() => {
-                //   dispatch(deleteEvent(event._id));
-                // }}
-              >
-                Modify
-              </Button> */}
           </div>
         ) : null
       )}

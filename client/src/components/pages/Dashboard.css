@@ -1,0 +1,17 @@
+.listCard {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 80px 80px 40px 80px;
+  }
+
+.itemCard {
+    display: flex;
+    justify-content: space-around;
+}
+.itemCardAll {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

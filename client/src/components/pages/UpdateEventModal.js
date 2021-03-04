@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {
-  Button,
+//   Button,
   Modal,
   ModalHeader,
   ModalBody,
@@ -14,14 +14,28 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { unpdateEvent } from "../../js/actions/gettingActions";
 
-const UpdateEventModal = ({event}) => {
-//   const history = useHistory();
+import CreateIcon from "@material-ui/icons/Create";
+import { makeStyles } from "@material-ui/core/styles";
+import Button from '@material-ui/core/Button';
+
+
+const useStyles = makeStyles((theme) => ({
+  button: {
+    margin: theme.spacing(1),
+  },
+}));
+
+const UpdateEventModal = ({ event }) => {
+    //material ui
+    const classes = useStyles();
+
+  //   const history = useHistory();
   const dispatch = useDispatch();
   const [modal, setModal] = useState(false);
   const [formData, setFormData] = useState({
-    _id : event._id,
-    nameOfEvent : event.nameOfEvent,
-    description: event.description ,
+    _id: event._id,
+    nameOfEvent: event.nameOfEvent,
+    description: event.description,
     category: event.category,
     activity: event.activity,
     address: event.address,
@@ -41,9 +55,17 @@ const UpdateEventModal = ({event}) => {
 
   return (
     <div>
-      <Button color="primary" onClick={toggle}>
+
+      <Button
+        variant="contained"
+        color="primary"
+        className={classes.button}
+        startIcon={<CreateIcon />}
+        onClick={toggle}
+      >
         Update
       </Button>
+
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>Update</ModalHeader>
         <ModalBody>
@@ -66,64 +88,64 @@ const UpdateEventModal = ({event}) => {
                 name="description"
               />
             </FormGroup>
-           
+
             <Input
-          defaultValue={event.category}
-          type="select"
-          className="col-sm"
-          name="category"
-          onChange={handleFormChange}
-        >
-          <option>Select category</option>
-          <option>Sports</option>
-          <option>Outdoors</option>
-          <option>Arts</option>
-        </Input>
-        <Input
-          defaultValue={event.activity}
-          type="select"
-          className="col-sm"
-          name="activity"
-          onChange={handleFormChange}
-        >
-          <option>Select activity</option>
-          <option>Running</option>
-          <option>Biking</option>
-          <option>Fitness</option>
-        </Input>
-        <input
-          defaultValue={event.address}
-          type="text"
-          className="col form-control"
-          name="address"
-          onChange={handleFormChange}
-        />
-        <input
-          defaultValue={event.city}
-          type="text"
-          className="col form-control"
-          name="city"
-          onChange={handleFormChange}
-        />
-        <Input
-          defaultValue={event.governorate}
-          type="select"
-          className="col-sm"
-          name="governorate"
-          onChange={handleFormChange}
-        >
-          <option>Select governorate</option>
-          <option>Tunis</option>
-          <option>Sousse</option>
-          <option>Sfax</option>
-        </Input>
-        <input
-          defaultValue={event.date}
-          type="datetime-local"
-          className="col form-control"
-          name="date"
-          onChange={handleFormChange}
-        />   
+              defaultValue={event.category}
+              type="select"
+              className="col-sm"
+              name="category"
+              onChange={handleFormChange}
+            >
+              <option>Select category</option>
+              <option>Sports</option>
+              <option>Outdoors</option>
+              <option>Arts</option>
+            </Input>
+            <Input
+              defaultValue={event.activity}
+              type="select"
+              className="col-sm"
+              name="activity"
+              onChange={handleFormChange}
+            >
+              <option>Select activity</option>
+              <option>Running</option>
+              <option>Biking</option>
+              <option>Fitness</option>
+            </Input>
+            <input
+              defaultValue={event.address}
+              type="text"
+              className="col form-control"
+              name="address"
+              onChange={handleFormChange}
+            />
+            <input
+              defaultValue={event.city}
+              type="text"
+              className="col form-control"
+              name="city"
+              onChange={handleFormChange}
+            />
+            <Input
+              defaultValue={event.governorate}
+              type="select"
+              className="col-sm"
+              name="governorate"
+              onChange={handleFormChange}
+            >
+              <option>Select governorate</option>
+              <option>Tunis</option>
+              <option>Sousse</option>
+              <option>Sfax</option>
+            </Input>
+            <input
+              defaultValue={event.date}
+              type="datetime-local"
+              className="col form-control"
+              name="date"
+              onChange={handleFormChange}
+            />
           </Form>
         </ModalBody>
         <ModalFooter>
