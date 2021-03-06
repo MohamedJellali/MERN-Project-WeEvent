@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import {Link} from 'react-router-dom'
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import Card from "@material-ui/core/Card";
@@ -23,7 +22,6 @@ import DoneAllIcon from "@material-ui/icons/DoneAll";
 import CloseIcon from "@material-ui/icons/Close";
 import CancelRoundedIcon from "@material-ui/icons/CancelRounded";
 import ClearRoundedIcon from "@material-ui/icons/ClearRounded";
-import { Alert } from "react-st-modal";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -37,6 +35,14 @@ import { FacebookShareButton } from "react-share";
 import { FacebookShareCount } from "react-share";
 
 import { FacebookIcon, TwitterShareButton, TwitterIcon } from "react-share";
+
+import { Alert } from "react-st-modal";
+
+import Fab from "@material-ui/core/Fab";
+
+import { useHistory, Redirect } from "react-router-dom";
+
+import { getEvents } from "../../js/actions/gettingActions";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -61,7 +67,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function EventCard({ event }) {
+export default function EventPage({ match }) {
+  //get all events
+  const getAllEvents = () => {
+    dispatch(getEvents());
+  };
+
+  useEffect(() => {
+    getAllEvents();
+  }, []);
+
+  const events = useSelector((state) => state.gettingReducer.events);
+  const history = useHistory();
+
+  let event = events.find((el) => el._id == match.params.id);
+
   const convertTimeHeader = (time) => {
     let year = time.slice(0, 4);
     let month = time.slice(5, 7);
@@ -96,7 +116,7 @@ export default function EventCard({ event }) {
   // const user = useSelector((state) => state.gettingReducer.user);
   const user = useSelector((state) => state.authReducer.user);
 
-  // /!\ PROBLEM MUST RESOLVED !!!!!!!!
+  const isAuth = useSelector((state) => state.authReducer.isAuth);
   const [toggle, setToggle] = useState(
     !user ? false : event.participant.includes(user._id)
   );
@@ -125,6 +145,15 @@ export default function EventCard({ event }) {
     }
   };
 
+  const [showDetails, setShowDetails] = useState(false);
+
+  const showdet = () => {
+    if (!user) {
+      return Alert("please login to show details", "Alert");
+    }
+    setShowDetails(!showDetails);
+  };
+
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -136,23 +165,36 @@ export default function EventCard({ event }) {
     }
   };
 
+  if (!event) {
+    return <Redirect to="/running" />;
+  }
   return (
-    <Card
-      className={classes.root}
+    <div
       style={{
-        boxShadow: "0 0 1px 1px rgba(0,0,0,.2)",
-        marginTop: "30px",
-        backgroundColor: "#EFF0F1",
-        // "#FFCE01",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
+        height: "750px",
       }}
     >
-      <CardHeader
-        avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            {event.organizer.charAt(0)}
-          </Avatar>
-        }
-        action={
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          width: "1200px",
+          height: "500px",
+        }}
+      >
+        <div>
+          <img
+            src="https://blog.mapmyrun.com/wp-content/uploads/2017/01/Why-Solo-Runners-Who-Should-Consider-a-Running-Group.jpg"
+            alt="photo"
+            height="400px"
+          />
+        </div>
+        <div>
           <IconButton aria-label="share">
             <FacebookShareButton
               url={"http://www.youtube.com"}
@@ -165,76 +207,62 @@ export default function EventCard({ event }) {
               <FacebookIcon size={24} />
             </FacebookShareButton>
           </IconButton>
-        }
-        title={event.city}
-        subheader={convertTimeHeader(event.date)}
-      />
-      <div style={{display:'flex', flexDirection: 'column', alignItems: 'center'}}>
-      {/* <CardMedia
-        className={classes.media}
-        image="https://www.gracepointwellness.org/images/root/carriehandstogether.jpg"
-        title="Paella dish"
-      /> */}
-     <img src="https://blog.mapmyrun.com/wp-content/uploads/2017/01/Why-Solo-Runners-Who-Should-Consider-a-Running-Group.jpg" alt='photo' height="200px"/>
-      <CardContent
-        style={{
-          width: "400px",
-          textAlign: "center",
-        }}
-      >
-        <Typography
-          variant="body2"
-          color="textSecondary"
-          component="p"
-        >
-          <Link to={`/event/${event._id}`}>
-          <h4 style={{ color: "black" }}>{event.nameOfEvent}</h4></Link>
-        </Typography>
-      </CardContent>
-      </div>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <Button
-          variant="contained"
-          size="small"
-          variant="outlined"
-          className={classes.button}
-          startIcon={!toggle ? <DoneIcon /> : <DoneAllIcon />}
-          color={!toggle ? "primary" : "secondary"}
-          onClick={participateToEvent}
-        >
-          {!toggle ? "Participate" : "Participated"}
-        </Button>
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-          <h6>More</h6>
-        </IconButton>
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
 
-      </Collapse>
-    </Card>
+          <h2> {event.nameOfEvent}</h2>
+
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <h6 style={{ color: "black" }}>
+              {" "}
+              Organized by : {event.organizer}
+            </h6>
+            <IconButton aria-label="add to favorites">
+              <FavoriteIcon />
+            </IconButton>
+            <p style={{fontWeight: "bolder",}}>Description:</p> 
+            <p>{event.description}</p>
+            
+            {!isAuth ? (
+              <Fab
+                variant="extended"
+                size="small"
+                color="primary"
+                aria-label="add"
+                className={classes.margin}
+                onClick={showdet}
+              >
+                Show More Details
+              </Fab>
+            ) : null}
+            {(showDetails || isAuth) ? (
+              <div>
+                <p style={{fontWeight: "bolder",}}>Date/Time :</p>
+                {convertTimeMore(event.date)}
+                <br/> <p style={{fontWeight: "bolder",}}>Address :</p> 
+                {event.address} à {event.city} - {event.governorate}
+                <br/> <p style={{fontWeight: "bolder",}}> Nomber of Participants :</p> 
+                {event.participant.length}{" "}
+              </div>
+            ) : null}
+            <Button
+              variant="contained"
+              size="small"
+              variant="outlined"
+              className={classes.button}
+              startIcon={!toggle ? <DoneIcon /> : <DoneAllIcon />}
+              color={!toggle ? "primary" : "secondary"}
+              onClick={participateToEvent}
+            >
+              {!toggle ? "Participate" : "Participated"}
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
-// }
-
-// import React from 'react'
-
-// function EventCard({event}) {
-//     return (
-//         <div>
-//             <h3>{event.nameOfEvent}</h3>
-//         </div>
-//     )
-// }
-
-// export default EventCard

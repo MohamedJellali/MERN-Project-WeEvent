@@ -6,11 +6,11 @@ const User = require("../models/User");
 const RegisterRules = () => [
   body("name", "Name is required").notEmpty(),
   body("lastName", "Last name is required").notEmpty(),
-  body("password", "password must contains at least 6 characters").isLength({
+  body("password", "Password must contain at least 6 characters").isLength({
     min: 6,
     max: 20,
   }),
-  body("email", "This not a valid Email").isEmail(),
+  body("email", "Please Enter a valid Email").isEmail(),
   //mail used  or not
   body("email").custom((value) => {
     return User.findOne({ email: value }).then((user) => {

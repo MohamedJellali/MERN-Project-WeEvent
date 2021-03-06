@@ -13,6 +13,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { register } from "../../js/actions/authActions";
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 const RegisterPage = (props) => {
   const history = useHistory();
@@ -34,9 +35,9 @@ const RegisterPage = (props) => {
     dispatch(register(formData));
   };
 
-  if(isAuth){
-    history.push('/');
-}
+  if (isAuth) {
+    history.push("/");
+  }
   return (
     <div
       style={{
@@ -124,7 +125,8 @@ const RegisterPage = (props) => {
               handleConfim();
             }}
           >
-            Confirm
+            <AccountCircleIcon />
+            Register
           </Button>
         </div>
       </div>
