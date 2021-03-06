@@ -13,7 +13,7 @@ function Sports() {
         background:
           "url(https://images.unsplash.com/photo-1591311630200-ffa9120a540f?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=998&q=80)",
         backgroundRepeat: "repeat",
-        height: "1000px",
+        height: "800px",
         backgroundSize: "cover",
       }}
     >
@@ -25,7 +25,7 @@ function Sports() {
       ></div>
 
       <Button onClick={() => history.push("/")}>Home Page</Button>
-      <h1>Sports Page</h1>
+      <h1 style={{color:'white'}}>Sports Page</h1>
       {isAuth ? <h2>Private settings</h2> : null}
       <Button onClick={() => history.push("/running")}>Running</Button>
       <Button onClick={() => history.push("/biking")}>Biking</Button>

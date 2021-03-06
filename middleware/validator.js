@@ -18,6 +18,7 @@ const RegisterRules = () => [
         return Promise.reject("E-mail already in use");
       }
     });
+
   }),
 ];
 

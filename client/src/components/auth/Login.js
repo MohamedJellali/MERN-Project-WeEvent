@@ -13,16 +13,12 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { login } from "../../js/actions/authActions";
-
-
+import CompareArrowsIcon from "@material-ui/icons/CompareArrows";
 
 const LoginModal = (props) => {
-
   // const error = useSelector((state) => state.authReducer.error)
   // console.log(error)
   // const events = useSelector((state) => state.gettingReducer.events);
-
-
 
   const dispatch = useDispatch();
   let history = useHistory();
@@ -44,15 +40,20 @@ const LoginModal = (props) => {
 
   return (
     <div>
-      <Button style={{
-    backgroundColor: "Transparent",
-    backgroundRepeat: "no-repeat",
-    border: "none",
-    cursor:"pointer",
-    overflow: "hidden",
-    outline:"none",
-    color:"black",
-}} color="primary" onClick={toggle}>
+      <Button
+        style={{
+          backgroundColor: "Transparent",
+          backgroundRepeat: "no-repeat",
+          border: "none",
+          cursor: "pointer",
+          overflow: "hidden",
+          outline: "none",
+          color: "black",
+        }}
+        color="primary"
+        onClick={toggle}
+      >
+        <CompareArrowsIcon />
         Login
       </Button>
       <Modal isOpen={modal} toggle={toggle}>

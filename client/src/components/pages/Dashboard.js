@@ -23,6 +23,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Dashboard = () => {
+
+const [affichage, setAffichage] = useState(1);
+
+
+
   //material ui
   const classes = useStyles();
 
@@ -72,52 +77,38 @@ const Dashboard = () => {
           }}
         ></div>
         <Button onClick={() => history.push("/")}>Home Page</Button>
+        <Button onClick={() => setAffichage(1)}>Users</Button>
+        <Button onClick={() => setAffichage(2)}>Events</Button>
+        <Button onClick={() => setAffichage(3)}>My created Events</Button>
+        {console.log(affichage)}
+
         <h1>
           Admin {user.name} {user.lastName} : {user.email}
         </h1>
+
         <h3>Members List : </h3>
         <div
-          style={{
-            display: "flex",
-            justifyContent: "space-around",
-            flexWrap: "wrap",
-            margin: "80px 80px 40px 80px",
-          }}
+          style={{display: "flex",justifyContent: "space-around",flexWrap: "wrap",margin: "80px 80px 40px 80px",}}
         >
-          {console.log("hhhh", users)}
           {users.map((user) =>
             user.role != "admin" ? (
               <ProfileCard key={user.id} user={user} />
             ) : null
           )}
         </div>
+
         <h4>My Events Created</h4>
         <div
-          style={{
-            display: "flex",
-            justifyContent: "space-around",
-            flexWrap: "wrap",
-            margin: "80px 80px 40px 80px",
-          }}
+          style={{display: "flex",justifyContent: "space-around",flexWrap: "wrap",margin: "80px 80px 40px 80px",}}
         >
-          {events.map((event) =>
+          {events.reverse().map((event) =>
             event.organizer == `${user.name} ${user.lastName}` ? (
               <div>
                 <EventCard key={event.id} event={event} />
                 <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-around",
-                  }}
+                  style={{display: "flex",justifyContent: "space-around",}}
                 >
-                  <Button
-                    variant="contained"
-                    style={{
-                      backgroundColor: "#F4364C",
-                      color: "#FFFFFF",
-                    }}
-                    className={classes.button}
-                    startIcon={<DeleteIcon />}
+                  <Button variant="contained" style={{backgroundColor: "#F4364C",color: "#FFFFFF",}} className={classes.button} startIcon={<DeleteIcon />}
                     onClick={() => {
                       dispatch(deleteEvent(event._id));
                     }}
@@ -131,32 +122,9 @@ const Dashboard = () => {
           )}
         </div>
 
-        {/* <h4>My Events that i participated in</h4>
-        {events.map((event) =>
-          event.participant.includes(user._id) ? (
-            <div>
-              <EventCard key={event.id} event={event} />
-              <Button
-                variant="contained"
-                style={{
-                  backgroundColor: "#F4364C",
-                  color: "#FFFFFF",
-                }}
-                className={classes.button}
-                startIcon={<DeleteIcon />}
-                onClick={() => {
-                  dispatch(deleteEvent(event._id));
-                }}
-              >
-                Delete
-              </Button>
-            </div>
-          ) : null
-        )} */}
-
         <h4>All Events : </h4>
         <div className='listCard'>
-        {events.map((event) =>
+        {events.reverse().reverse().map((event) =>
           true ? (
             <div className="itemCardAll">
               <EventCard key={event.id} event={event} />
@@ -189,7 +157,7 @@ const Dashboard = () => {
         Member {user.name} {user.lastName} : {user.email}
       </h1>
       <h4>My Events Created</h4>
-      {events.map((event) =>
+      {events.reverse().map((event) =>
         event.organizer == `${user.name} ${user.lastName}` ? (
           <div>
             <EventCard key={event.id} event={event} />
@@ -212,7 +180,7 @@ const Dashboard = () => {
         ) : null
       )}
       <h4>My Events that i participated in</h4>
-      {events.map((event) =>
+      {events.reverse().map((event) =>
         event.participant.includes(user._id) ? (
           <EventCard key={event.id} event={event} />
         ) : null

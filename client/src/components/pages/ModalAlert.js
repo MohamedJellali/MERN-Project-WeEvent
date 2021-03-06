@@ -10,28 +10,50 @@ import {
   Label,
   Input,
 } from "reactstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { login } from "../../js/actions/authActions";
+import CompareArrowsIcon from "@material-ui/icons/CompareArrows";
 
-const ModalAlert = (text) => {
-//   const history = useHistory();
+const ConfirmModal = (props) => {
+  let history = useHistory();
 
   const [modal, setModal] = useState(false);
+
+  const handleConfim = () => {
+    history.push("/");
+  };
 
   const toggle = () => setModal(!modal);
 
   return (
     <div>
-      <Button color="primary" onClick={toggle}>
-        Update
+      <Button
+        style={{
+          backgroundColor: "Transparent",
+          backgroundRepeat: "no-repeat",
+          border: "none",
+          cursor: "pointer",
+          overflow: "hidden",
+          outline: "none",
+          color: "black",
+        }}
+        color="primary"
+        onClick={toggle}
+      >
+        Welcome Back
       </Button>
       <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader toggle={toggle}>Alert</ModalHeader>
+        <ModalHeader toggle={toggle}></ModalHeader>
         <ModalBody>
           <Form>
-           {text}
+            <FormGroup>
+              <div> Welcome Back</div>
+            </FormGroup>
           </Form>
         </ModalBody>
         <ModalFooter>
-          <Button color="secondary" onClick={toggle}>
+          <Button color="primary" onClick={handleConfim}>
             Close
           </Button>
         </ModalFooter>
@@ -40,4 +62,4 @@ const ModalAlert = (text) => {
   );
 };
 
-export default ModalAlert;
+export default ConfirmModal;

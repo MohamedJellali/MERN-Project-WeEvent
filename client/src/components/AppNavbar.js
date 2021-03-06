@@ -2,6 +2,9 @@ import React, { Fragment } from "react";
 import { Navbar, NavbarBrand, Nav, NavItem, Button } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
 
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+
+
 import Register from "./auth/Register";
 import Login from "./auth/Login";
 import { Link, useHistory } from "react-router-dom";
@@ -13,7 +16,16 @@ import brand from "../photos/logo.png";
 // import { Container, Row, Col, Card, Form } from "react-bootstrap";
 // import "./pages/Sidebar.css";
 import SidebarCompnent from "./pages/Sidebar";
-import SandwichButton from "./pages/SandwichButton"
+import SandwichButton from "./pages/SandwichButton";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import DesktopMacIcon from "@material-ui/icons/DesktopMac";
+import CreateIcon from "@material-ui/icons/Create";
+import CompareArrowsIcon from "@material-ui/icons/CompareArrows";
+import Brightness1RoundedIcon from '@material-ui/icons/Brightness1Rounded';
+
+
+import "./AppNavbar.css";
+import { Alert } from "react-st-modal";
 
 const AppNavbar = () => {
   const history = useHistory();
@@ -28,11 +40,10 @@ const AppNavbar = () => {
   // }, []);
 
   // const user = useSelector((state) => state.gettingReducer.user);
-  // const user = useSelector((state) => state.authReducer.user);
+  const user = useSelector((state) => state.authReducer.user);
 
   return (
     <div>
-            
       <Navbar
         className="d-flex justify-content-between"
         style={{
@@ -46,10 +57,10 @@ const AppNavbar = () => {
           top: "0",
           zIndex: "1030",
         }}
-        
         dark
       >
-        <SandwichButton/>
+        <SandwichButton />
+       {/* {isAuth ? <p style={{color: "Green"}}>Connected</p> : null} */}
         <NavbarBrand
           tag={() => (
             <Link
@@ -77,22 +88,61 @@ const AppNavbar = () => {
           <Button onClick={() => history.push("/arts")}>Arts</Button>
         </NavItem> */}
         <Nav className="text-white">
+          <NavItem className="p-2">
+            <Button
+              style={{
+                backgroundColor: "transparent",
+                backgroundRepeat: "no-repeat",
+                border: "none",
+                cursor: "pointer",
+                overflow: "hidden",
+                outline: "none",
+                color: "black",
+              }}
+              onClick={
+                () =>
+                  isAuth
+                    ? history.push("/add")
+                    : Alert("please login to could add an event", "Alert")
+                // alert("please login to could add an event")
+              }
+            >
+              <CreateIcon />
+              Creat Event
+            </Button>
+          </NavItem>
           {isAuth ? (
             <Fragment>
               <NavItem className="p-2">
                 <Button
                   onClick={() => {
                     dispatch(logout());
-                    history.push("/");
+                    history.goBack();
                   }}
                   color="light"
                 >
+                  <ExitToAppIcon />
                   Logout
                 </Button>
               </NavItem>
               <NavItem className="p-2">
                 <Button color="light">
-                  <Link to={`/dashboard`}>Dashboard</Link>
+                  <Link
+                    to={`/dashboard`}
+                    style={{
+                      textDecoration: "none",
+                      backgroundColor: "Transparent",
+                      backgroundRepeat: "no-repeat",
+                      border: "none",
+                      cursor: "pointer",
+                      overflow: "hidden",
+                      outline: "none",
+                      color: "black",
+                    }}
+                  >
+                    {" "}
+                    <DesktopMacIcon /> Dashboard
+                  </Link>
                   {/* <Link to={`/dashboard/${user.name}${user.lastName}`}>Dashboard</Link> */}
                 </Button>
               </NavItem>
@@ -100,10 +150,40 @@ const AppNavbar = () => {
           ) : (
             <Fragment>
               <NavItem className="p-2">
-                <Login />
+              <Button
+        style={{
+          backgroundColor: "Transparent",
+          backgroundRepeat: "no-repeat",
+          border: "none",
+          cursor: "pointer",
+          overflow: "hidden",
+          outline: "none",
+          color: "black",
+        }}
+        color="primary"
+        onClick={() => history.push("/Login")}
+      >
+        <CompareArrowsIcon />
+        Login
+      </Button>
               </NavItem>
               <NavItem className="p-2">
-                <Register />
+                <Button
+                  style={{
+                    backgroundColor: "Transparent",
+                    backgroundRepeat: "no-repeat",
+                    border: "none",
+                    cursor: "pointer",
+                    overflow: "hidden",
+                    outline: "none",
+                    color: "black",
+                  }}
+                  color="primary"
+                  onClick={() => history.push("/Register")}
+                >
+                  <AccountCircleIcon />
+                  Register
+                </Button>
               </NavItem>
             </Fragment>
           )}

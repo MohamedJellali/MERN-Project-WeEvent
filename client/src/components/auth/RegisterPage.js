@@ -10,12 +10,11 @@ import {
   Label,
   Input,
 } from "reactstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { register } from "../../js/actions/authActions";
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
-const RegisterModal = (props) => {
+const RegisterPage = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const [modal, setModal] = useState(false);
@@ -26,39 +25,48 @@ const RegisterModal = (props) => {
     password: "",
   });
 
+  const isAuth = useSelector((state) => state.authReducer.isAuth);
+
   const handleFormChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const handleConfim = () => {
+  const handleConfim = async () => {
     dispatch(register(formData));
-    history.push("/dashboard");
   };
 
-  const toggle = () => setModal(!modal);
-
+  if(isAuth){
+    history.push('/');
+}
   return (
-    <div>
-      <Button
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "750px",
+        background:
+          "url(https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80)",
+        // backgroundRepeat: "repeat",
+        backgroundSize: "cover",
+      }}
+    >
+      <div
         style={{
-          backgroundColor: "Transparent",
-          backgroundRepeat: "no-repeat",
-          border: "none",
-          cursor: "pointer",
-          overflow: "hidden",
-          outline: "none",
-          color: "black",
+          backgroundColor: "rgba(255,255,255,0.5)",
+          //   backgroundColor: "rgba(0,0,0,0.8)",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "400px",
+          height: "480px",
+          borderRadius: "20px",
         }}
-        color="primary"
-        onClick={toggle}
       >
-        <AccountCircleIcon/>
-        Register
-      </Button>
-      <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader toggle={toggle}>Register</ModalHeader>
-        <ModalBody>
+        <div>
           <Form>
-            <FormGroup>
+            <FormGroup style={{ width: "300px" }}>
               <Label for="name">Name</Label>
               <Input
                 onChange={handleFormChange}
@@ -68,7 +76,7 @@ const RegisterModal = (props) => {
                 placeholder="Enter your name ...."
               />
             </FormGroup>
-            <FormGroup>
+            <FormGroup style={{ width: "300px" }}>
               <Label for="lastName">Last Name</Label>
               <Input
                 onChange={handleFormChange}
@@ -78,7 +86,7 @@ const RegisterModal = (props) => {
                 placeholder="Enter your last name ...."
               />
             </FormGroup>
-            <FormGroup>
+            <FormGroup style={{ width: "300px" }}>
               <Label for="exampleEmail">Email</Label>
               <Input
                 onChange={handleFormChange}
@@ -88,7 +96,7 @@ const RegisterModal = (props) => {
                 placeholder="Enter your Email..."
               />
             </FormGroup>
-            <FormGroup>
+            <FormGroup style={{ width: "300px" }}>
               <Label for="password">password</Label>
               <Input
                 onChange={handleFormChange}
@@ -99,24 +107,29 @@ const RegisterModal = (props) => {
               />
             </FormGroup>
           </Form>
-        </ModalBody>
-        <ModalFooter>
+        </div>
+        <div>
           <Button
+            style={{
+              backgroundColor: "white",
+              backgroundRepeat: "no-repeat",
+              border: "none",
+              cursor: "pointer",
+              overflow: "hidden",
+              outline: "none",
+              color: "black",
+            }}
             color="primary"
             onClick={() => {
               handleConfim();
-              toggle();
             }}
           >
             Confirm
-          </Button>{" "}
-          <Button color="secondary" onClick={toggle}>
-            Cancel
           </Button>
-        </ModalFooter>
-      </Modal>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default RegisterModal;
+export default RegisterPage;

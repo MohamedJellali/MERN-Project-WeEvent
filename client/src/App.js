@@ -21,6 +21,8 @@ import Hiking from "./components/pages/outdoorsPages/Hiking";
 import Yoga from "./components/pages/outdoorsPages/Yoga";
 import AddEvent from "./components/pages/AddEvent";
 import SidebarCompnent from './components/pages/Sidebar'
+import LoginPage from "./components/auth/LoginPage";
+import RegisterPage from "./components/auth/RegisterPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -50,6 +52,8 @@ function App() {
         <Route path="/hikingCamping" component={Hiking} />
         <Route path="/yoga" component={Yoga} />
         <Route path="/add" component={AddEvent} />
+        <Route path="/Login" component={LoginPage} />
+        <Route path="/Register" component={RegisterPage} />
       </Switch>
     </BrowserRouter>
     </div>

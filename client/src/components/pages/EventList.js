@@ -29,7 +29,7 @@ function EventList(props) {
       {console.log("hhhh", events)}
       {console.log("participate", events[0])}
 
-      {events.map((event) =>
+      {events.reverse().map((event) =>
         event.activity == props.activity ? (
           <EventCard key={event.id} event={event} />
         ) : null

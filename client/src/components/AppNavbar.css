@@ -1,0 +1,38 @@
+.createLogin {
+
+        background-color: "#F8F9FA";
+        background-repeat: no-repeat;
+        border: none;
+        cursor: pointer;
+        overflow: hidden;
+        outline: none;
+        color: black;
+
+}
+
+.createLogout {
+    background-color: "transparent";
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    color: black;
+}
+
+:root {
+    --st-modal-borderRadius: 0px;
+    --st-modal-boxShadow: 0 10px 50px rgba(0, 0, 0, 0.8);
+
+    --st-modal-backgroundColor: #2a2a2a;
+    --st-modal-titleTextColor: #eeeeee;
+    --st-modal-secondColor: #3c3c3c;
+
+    --st-dialog-contentColor: #ffffff;
+
+    --st-modal-transformVisible: translate3d(-50%, -50%, 0) scale(1);
+    --st-modal-transformHidden: translate3d(-50%, -50%, 0) scale(0.1);
+
+    --st-button-primaryColor: #dddddd;
+    --st-button-primaryTextColor: #000000;
+}

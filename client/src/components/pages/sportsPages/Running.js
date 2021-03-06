@@ -38,15 +38,6 @@ function Running() {
       <Button onClick={() => history.push("/sports")}>
         Comeback to Sports Page
       </Button>
-      <Button
-        onClick={() =>
-          isAuth
-            ? history.push("/add")
-            : alert("please login to could add an event")
-        }
-      >
-        Creat Event
-      </Button>
       <h1 style={{color:'white'}}>Running Activities Page</h1>
       <EventList activity="Running" />
 

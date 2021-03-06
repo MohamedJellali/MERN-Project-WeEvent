@@ -1,5 +1,7 @@
 import axios from "axios";
 import { TokenExpiredError } from "jsonwebtoken";
+import { Alert } from "react-st-modal";
+
 
 import {
   LOGIN_USER,
@@ -23,7 +25,12 @@ export const register = (formData) => async (dispatch) => {
     console.log("err in actions dispatch register", error);
     const errorsArray = error.response.data.errors;
     if (Array.isArray(errorsArray)) {
-      errorsArray.forEach((err) => alert(err.msg));
+      let arr = [];
+      for (let i = 0; i < errorsArray.length; i++) {
+        arr[i] = errorsArray[i].msg;
+      }
+      Alert(`Register Fail : ${arr.join("-")}`, "Alert");
+      // errorsArray.forEach((err) => Alert(err.msg, "Alert"));
     }
     dispatch({
       type: AUTH_ERROR,
@@ -35,6 +42,7 @@ export const register = (formData) => async (dispatch) => {
 export const login = (formData) => async (dispatch) => {
   dispatch(setLoading);
   try {
+  
     const res = await axios.post("/api/auth/login", formData);
 
     //login user
@@ -42,9 +50,10 @@ export const login = (formData) => async (dispatch) => {
       type: LOGIN_USER,
       payload: res.data, // our res.data is : //auth.js line 73 // { msg: "Welcome, Login Success", user, token: `Bearer ${token}` };
     });
+    
   } catch (error) {
     console.log("err in actions dispatch login", error);
-    alert('bad cridantials !!!')
+    Alert("Login Fail: Please Try Again", "Alert");
     // const errorsArray = error.response.data.errors;
     // if (Array.isArray(errorsArray)) {
     //   errorsArray.forEach((err) => alert(err.msg));
