@@ -73,8 +73,7 @@ export default function EventCard({ event }) {
   };
 
 
-
-const ImageCard = (activity) => {
+const ImageCardd = (activity) => {
   switch (activity) {
     case "Running":
       return "https://blog.mapmyrun.com/wp-content/uploads/2017/01/Why-Solo-Runners-Who-Should-Consider-a-Running-Group.jpg"
@@ -205,7 +204,7 @@ const ImageCard = (activity) => {
         >
 
           <img
-            src={ImageCard(event.activity)}
+            src={ImageCardd(event.activity)}
             alt="photo"
             height="200px"
           />
@@ -296,7 +295,7 @@ const ImageCard = (activity) => {
           }}
         >
           <img
-            src="https://blog.mapmyrun.com/wp-content/uploads/2017/01/Why-Solo-Runners-Who-Should-Consider-a-Running-Group.jpg"
+            src={ImageCardd(event.activity)}
             alt="photo"
             height="200px"
           />
