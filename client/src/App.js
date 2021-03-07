@@ -25,6 +25,7 @@ import LoginPage from "./components/auth/LoginPage";
 import RegisterPage from "./components/auth/RegisterPage";
 import EventPage from "./components/pages/EventPage";
 import { getEvents } from "./js/actions/gettingActions";
+import LoginPageAdd from "./components/auth/LoginPageAdd";
 
 function App() {
   const dispatch = useDispatch();
@@ -66,6 +67,7 @@ function App() {
           <Route path="/yoga" component={Yoga} />
           {/* <Route path="/event/:id" render={(props) => <EventPage event={events} {...props} />} /> */}
           <Route path="/Login" component={LoginPage} />
+          <Route path="/Loginn" component={LoginPageAdd} />
           <Route path="/Register" component={RegisterPage} />
           <Route
             path="/event/:id"

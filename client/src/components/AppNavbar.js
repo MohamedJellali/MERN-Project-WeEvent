@@ -2,8 +2,7 @@ import React, { Fragment } from "react";
 import { Navbar, NavbarBrand, Nav, NavItem, Button } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
 
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 import Register from "./auth/Register";
 import Login from "./auth/Login";
@@ -21,8 +20,8 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import DesktopMacIcon from "@material-ui/icons/DesktopMac";
 import CreateIcon from "@material-ui/icons/Create";
 import CompareArrowsIcon from "@material-ui/icons/CompareArrows";
-import Brightness1RoundedIcon from '@material-ui/icons/Brightness1Rounded';
-
+import Brightness1RoundedIcon from "@material-ui/icons/Brightness1Rounded";
+import DrawerComponent from './pages/Drawer'
 
 import "./AppNavbar.css";
 import { Alert } from "react-st-modal";
@@ -59,8 +58,9 @@ const AppNavbar = () => {
         }}
         dark
       >
-        <SandwichButton />
-       {/* {isAuth ? <p style={{color: "Green"}}>Connected</p> : null} */}
+        <DrawerComponent />
+        {/* <SandwichButton /> */}
+        {/* {isAuth ? <p style={{color: "Green"}}>Connected</p> : null} */}
         <NavbarBrand
           tag={() => (
             <Link
@@ -78,7 +78,6 @@ const AppNavbar = () => {
                 src={brand}
                 alt="logo"
               />
-              {/* WeEvent.com */}
             </Link>
           )}
         />
@@ -103,7 +102,8 @@ const AppNavbar = () => {
                 () =>
                   isAuth
                     ? history.push("/add")
-                    : Alert("please login to could add an event", "Alert")
+                    : history.push("/Loginn")
+                    // Alert("please login to could add an event", "Alert")
                 // alert("please login to could add an event")
               }
             >
@@ -117,7 +117,7 @@ const AppNavbar = () => {
                 <Button
                   onClick={() => {
                     dispatch(logout());
-                    history.goBack();
+                    history.push("/");
                   }}
                   color="light"
                 >
@@ -150,22 +150,22 @@ const AppNavbar = () => {
           ) : (
             <Fragment>
               <NavItem className="p-2">
-              <Button
-        style={{
-          backgroundColor: "Transparent",
-          backgroundRepeat: "no-repeat",
-          border: "none",
-          cursor: "pointer",
-          overflow: "hidden",
-          outline: "none",
-          color: "black",
-        }}
-        color="primary"
-        onClick={() => history.push("/Login")}
-      >
-        <CompareArrowsIcon />
-        Login
-      </Button>
+                <Button
+                  style={{
+                    backgroundColor: "Transparent",
+                    backgroundRepeat: "no-repeat",
+                    border: "none",
+                    cursor: "pointer",
+                    overflow: "hidden",
+                    outline: "none",
+                    color: "black",
+                  }}
+                  color="primary"
+                  onClick={() => history.push("/Login")}
+                >
+                  <CompareArrowsIcon />
+                  Login
+                </Button>
               </NavItem>
               <NavItem className="p-2">
                 <Button

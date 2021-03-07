@@ -174,10 +174,12 @@ export default function EventPage({ match }) {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        flexWrap:'wrap',
         width: "100%",
         height: "750px",
       }}
     >
+
       <div
         style={{
           display: "flex",
@@ -193,8 +195,11 @@ export default function EventPage({ match }) {
             alt="photo"
             height="400px"
           />
+        <Button onClick={() => history.push("/Running")}>
+        Comeback to Running Page
+      </Button>
         </div>
-        <div>
+        <div style={{width:'350px'}}>
           <IconButton aria-label="share">
             <FacebookShareButton
               url={"http://www.youtube.com"}
@@ -227,6 +232,9 @@ export default function EventPage({ match }) {
             <p style={{fontWeight: "bolder",}}>Description:</p> 
             <p>{event.description}</p>
             
+ 
+
+
             {!isAuth ? (
               <Fab
                 variant="extended"
@@ -249,7 +257,8 @@ export default function EventPage({ match }) {
                 {event.participant.length}{" "}
               </div>
             ) : null}
-            <Button
+<br/>
+<Button
               variant="contained"
               size="small"
               variant="outlined"
@@ -260,6 +269,7 @@ export default function EventPage({ match }) {
             >
               {!toggle ? "Participate" : "Participated"}
             </Button>
+
           </div>
         </div>
       </div>

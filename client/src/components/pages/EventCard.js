@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {Link} from 'react-router-dom'
+import { Link, useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import Card from "@material-ui/core/Card";
@@ -24,6 +24,8 @@ import CloseIcon from "@material-ui/icons/Close";
 import CancelRoundedIcon from "@material-ui/icons/CancelRounded";
 import ClearRoundedIcon from "@material-ui/icons/ClearRounded";
 import { Alert } from "react-st-modal";
+import { getUsers, deleteEvent } from "../../js/actions/gettingActions";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -135,95 +137,176 @@ export default function EventCard({ event }) {
       setExpanded(!expanded);
     }
   };
-
-  return (
-    <Card
-      className={classes.root}
-      style={{
-        boxShadow: "0 0 1px 1px rgba(0,0,0,.2)",
-        marginTop: "30px",
-        backgroundColor: "#EFF0F1",
-        // "#FFCE01",
-      }}
-    >
-      <CardHeader
-        avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            {event.organizer.charAt(0)}
-          </Avatar>
-        }
-        action={
-          <IconButton aria-label="share">
-            <FacebookShareButton
-              url={"http://www.youtube.com"}
-              quote={
-                "Hello Guys, Let's Event-It, Join me in this wonderful event"
-              }
-              // hashtag="#Event-it"
-              className={classes.socialMediaButton}
-            >
-              <FacebookIcon size={24} />
-            </FacebookShareButton>
-          </IconButton>
-        }
-        title={event.city}
-        subheader={convertTimeHeader(event.date)}
-      />
-      <div style={{display:'flex', flexDirection: 'column', alignItems: 'center'}}>
-      {/* <CardMedia
-        className={classes.media}
-        image="https://www.gracepointwellness.org/images/root/carriehandstogether.jpg"
-        title="Paella dish"
-      /> */}
-     <img src="https://blog.mapmyrun.com/wp-content/uploads/2017/01/Why-Solo-Runners-Who-Should-Consider-a-Running-Group.jpg" alt='photo' height="200px"/>
-      <CardContent
+  if (user) {
+    return (
+      <Card
+        className={classes.root}
         style={{
-          width: "400px",
-          textAlign: "center",
+          boxShadow: "0 0 1px 1px rgba(0,0,0,.2)",
+          marginTop: "30px",
+          backgroundColor: "#EFF0F1",
+          // "#FFCE01",
         }}
       >
-        <Typography
-          variant="body2"
-          color="textSecondary"
-          component="p"
+        <CardHeader
+          avatar={
+            <Avatar aria-label="recipe" className={classes.avatar}>
+              {event.organizer.charAt(0)}
+            </Avatar>
+          }
+          action={
+            <IconButton aria-label="share">
+              <FacebookShareButton
+                url={"http://www.youtube.com"}
+                quote={
+                  "Hello Guys, Let's Event-It, Join me in this wonderful event"
+                }
+                // hashtag="#Event-it"
+                className={classes.socialMediaButton}
+              >
+                <FacebookIcon size={24} />
+              </FacebookShareButton>
+            </IconButton>
+          }
+          title={event.city}
+          subheader={convertTimeHeader(event.date)}
+        />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
         >
-          <Link to={`/event/${event._id}`}>
-          <h4 style={{ color: "black" }}>{event.nameOfEvent}</h4></Link>
-        </Typography>
-      </CardContent>
-      </div>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <Button
-          variant="contained"
-          size="small"
-          variant="outlined"
-          className={classes.button}
-          startIcon={!toggle ? <DoneIcon /> : <DoneAllIcon />}
-          color={!toggle ? "primary" : "secondary"}
-          onClick={participateToEvent}
-        >
-          {!toggle ? "Participate" : "Participated"}
-        </Button>
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-          <h6>More</h6>
-        </IconButton>
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
 
-      </Collapse>
-    </Card>
-  );
+          <img
+            src="https://blog.mapmyrun.com/wp-content/uploads/2017/01/Why-Solo-Runners-Who-Should-Consider-a-Running-Group.jpg"
+            alt="photo"
+            height="200px"
+          />
+          <CardContent
+            style={{
+              width: "400px",
+              textAlign: "center",
+            }}
+          >
+            <Typography variant="body2" color="textSecondary" component="p">
+              <Link to={`/event/${event._id}`}>
+                <h4 style={{ color: "black" }}>{event.nameOfEvent}</h4>
+              </Link>
+            </Typography>
+          </CardContent>
+       
+        <CardActions disableSpacing>
+          <Button
+            variant="contained"
+            size="small"
+            variant="outlined"
+            className={classes.button}
+            startIcon={!toggle ? <DoneIcon /> : <DoneAllIcon />}
+            color={!toggle ? "primary" : "secondary"}
+            onClick={participateToEvent}
+          >
+            {!toggle ? "Participate" : "Participated"}
+          </Button>
+          {/* <div style={{width:'100px'}}></div> */}
+          {user.role == "admin" ? (
+            <IconButton
+              aria-label="delete"
+              className={classes.margin}
+              onClick={() => {
+                dispatch(deleteEvent(event._id));
+              }}
+            >
+              <DeleteIcon fontSize="large" />
+            </IconButton>
+          ) : null}
+        </CardActions>
+        </div>
+        <Collapse in={expanded} timeout="auto" unmountOnExit></Collapse>
+      </Card>
+    );
+  }
+  if (!user) {
+    return (
+      <Card
+        className={classes.root}
+        style={{
+          boxShadow: "0 0 1px 1px rgba(0,0,0,.2)",
+          marginTop: "30px",
+          backgroundColor: "#EFF0F1",
+          // "#FFCE01",
+        }}
+      >
+        <CardHeader
+          avatar={
+            <Avatar aria-label="recipe" className={classes.avatar}>
+              {event.organizer.charAt(0)}
+            </Avatar>
+          }
+          action={
+            <IconButton aria-label="share">
+              <FacebookShareButton
+                url={"http://www.youtube.com"}
+                quote={
+                  "Hello Guys, Let's Event-It, Join me in this wonderful event"
+                }
+                // hashtag="#Event-it"
+                className={classes.socialMediaButton}
+              >
+                <FacebookIcon size={24} />
+              </FacebookShareButton>
+            </IconButton>
+          }
+          title={event.city}
+          subheader={convertTimeHeader(event.date)}
+        />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <img
+            src="https://blog.mapmyrun.com/wp-content/uploads/2017/01/Why-Solo-Runners-Who-Should-Consider-a-Running-Group.jpg"
+            alt="photo"
+            height="200px"
+          />
+
+          <CardContent
+            style={{
+              width: "400px",
+              textAlign: "center",
+            }}
+          >
+            <Typography variant="body2" color="textSecondary" component="p">
+              <Link to={`/event/${event._id}`}>
+                <h4 style={{ color: "black" }}>{event.nameOfEvent}</h4>
+              </Link>
+            </Typography>
+          </CardContent>
+
+          <CardActions disableSpacing>
+            <Button
+              // variant="contained"
+              size="small"
+              // variant="outlined"
+              className={classes.button}
+              startIcon={!toggle ? <DoneIcon /> : <DoneAllIcon />}
+              color={!toggle ? "primary" : "secondary"}
+              onClick={participateToEvent}
+            >
+              {!toggle ? "Participate" : "Participated"}
+            </Button>
+          </CardActions>
+        <Collapse in={expanded} timeout="auto" unmountOnExit></Collapse>
+        </div>
+
+      </Card>
+    );
+  }
 }
 // }
 

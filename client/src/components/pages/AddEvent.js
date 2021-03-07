@@ -4,6 +4,8 @@ import { addEvent } from "../../js/actions/addEventActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import ModalAlert from "./ModalAlert";
+import { Alert } from "react-st-modal";
+
 
 function AddEvent() {
   const user = useSelector((state) => state.authReducer.user);
@@ -56,9 +58,9 @@ function AddEvent() {
   const handleAddClick = () => {
     if (verifyEmpty(formData) != 0) {
       // <ModalAlert text={"Please fullfill all fields"} />
-      alert("Please fullfill all fields");
+      Alert("Please fullfill all fields", "Alert");
     } else if (formData.description.length < 12) {
-      alert("please describe the event in more than 12 characters");
+      Alert("please describe the event in more than 12 characters", "Alert");
     } else {
       dispatch(addEvent(formData));
       history.push(`${formData.activity}`);
@@ -67,17 +69,38 @@ function AddEvent() {
   };
 
   return (
-    <div>
-            <div
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        background:
+          "url(https://images.unsplash.com/photo-1525026198548-4baa812f1183?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=933&q=80)",
+          // backgroundRepeat: "repeat",
+          height: "100%",
+          backgroundSize: "cover",
+        }}
+    >
+      <div
         style={{
-          background:
-            "url(https://ca-times.brightspotcdn.com/dims4/default/bde3030/2147483647/strip/true/crop/2160x300+0+0/resize/1080x150!/quality/90/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F1a%2F1f%2Fb7c46b154772aabad3b12c020f11%2Fla-coronavirus-love-story-callout-dp-small2.jpg) no-repeat top center",
           width: "100%",
-          height: "150px",
+          height: "100px",
         }}
       ></div>
-      <h1>Add event Page</h1>
-      <div className="row m-2">
+      <div style={{backgroundColor:"rgba(255,255,255,0.8)", borderRadius:'10px',}}>
+      <h1>Create an event</h1>
+      <div
+        className="row m-2"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "400px",
+        }}
+      >
+        <Label for="nameOfEvent" style={{fontWeight: "bolder",}}>Title</Label>
         <input
           value={formData.nameOfEvent}
           type="text"
@@ -86,15 +109,17 @@ function AddEvent() {
           name="nameOfEvent"
           onChange={handleFormChange}
         />
-        <input
+        <Label for="description" style={{fontWeight: "bolder",}}>Description</Label>
+        <Input
           value={formData.description}
           type="text"
-          className="col form-control"
+          // className="col form-control"
           placeholder="description"
           name="description"
           onChange={handleFormChange}
+          style={{ height: "100px" }}
         />
-        <Label for="Category">Category</Label>
+        <Label for="Category" style={{fontWeight: "bolder",}}>Category</Label>
         <Input
           value={formData.category}
           type="select"
@@ -109,11 +134,11 @@ function AddEvent() {
           <option>Arts</option>
           <option>Charity</option>
         </Input>
-        <Label for="Activity">Activity</Label>
+        <Label for="Activity" style={{fontWeight: "bolder",}}>Activity</Label>
         <Input
           value={formData.activity}
           type="select"
-          placeholder="activity"
+          placeholder="Activity"
           className="col-sm"
           name="activity"
           onChange={handleFormChange}
@@ -122,7 +147,14 @@ function AddEvent() {
           <option>Running</option>
           <option>Biking</option>
           <option>Fitness</option>
+          <option>Camping/Hiking</option>
+          <option>Yoga/Meditation</option>
+          <option>Fitness</option>
+          <option>Painting</option>
+          <option>ReviewingBooks</option>
+          <option>Charity</option>
         </Input>
+        <Label for="address" style={{fontWeight: "bolder",}}>Address</Label>
         <input
           value={formData.address}
           type="text"
@@ -131,6 +163,7 @@ function AddEvent() {
           name="address"
           onChange={handleFormChange}
         />
+        <Label for="city" style={{fontWeight: "bolder",}}>City</Label>
         <input
           value={formData.city}
           type="text"
@@ -139,7 +172,7 @@ function AddEvent() {
           name="city"
           onChange={handleFormChange}
         />
-        <Label for="governorate">Governorate</Label>
+        <Label for="governorate" style={{fontWeight: "bolder",}}>Governorate</Label>
         <Input
           value={formData.governorate}
           type="select"
@@ -149,10 +182,32 @@ function AddEvent() {
           onChange={handleFormChange}
         >
           <option></option>
-          <option>Tunis</option>
-          <option>Sousse</option>
+          <option>Ariana</option>
+          <option>Beja</option>
+          <option>Ben Arous</option>
+          <option>Bizerte</option>
+          <option>Gabes</option>
+          <option>Gafsa</option>
+          <option>Jandouba</option>
+          <option>Kairouan</option>
+          <option>Kasserine</option>
+          <option>Kébili</option>
+          <option>Kef</option>
+          <option>Mahdia</option>
+          <option>Manouba</option>
+          <option>Medenin</option>
+          <option>Monastir</option>
+          <option>Nabeul</option>
           <option>Sfax</option>
+          <option>Sidi Bouzid</option>
+          <option>Siliana</option>
+          <option>Sousse</option>
+          <option>Tataouine</option>
+          <option>Tozeur</option>
+          <option>Tunis</option>
+          <option>Zaghouan</option>
         </Input>
+        <Label for="date" style={{fontWeight: "bolder",}}>Date/Time</Label>
         <input
           value={formData.date}
           type="datetime-local"
@@ -162,18 +217,19 @@ function AddEvent() {
           onChange={handleFormChange}
         />
 
-        <FormGroup>
+        {/* <FormGroup>
           <Label for="exampleFile">Please add photo to the event</Label>
           <Input type="file" name="file" id="exampleFile" />
           <FormText color="muted">
             This is some placeholder block-level help text for the above input.
           </FormText>
-        </FormGroup>
+        </FormGroup> */}
         <div>
           {console.log("the created event", formData)}
           <button className="btn btn-primary mx-2" onClick={handleAddClick}>
             ADD EVENT
           </button>{" "}
+        </div>
         </div>
       </div>
     </div>

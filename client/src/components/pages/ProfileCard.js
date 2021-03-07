@@ -17,15 +17,16 @@ function ProfileCard({ user }) {
         <div
           className="card"
           style={{
-            width: "250px",
-            boxShadow: "0 0 4px 4px rgba(0,0,0,.2)",
+            width: "200px",
+            height: '280px',
+            boxShadow: "0 0 2px 2px rgba(0,0,0,.2)",
             marginTop: "30px",
           }}
         >
           <div className="card-body">
             <div className="avatar">
               <img
-                src="https://st3.depositphotos.com/3581215/18899/v/600/depositphotos_188994514-stock-illustration-vector-illustration-male-silhouette-profile.jpg"
+                src="https://lh3.googleusercontent.com/proxy/uX8QQemoV3GFrKwC61haw75WuI2K_0cGa__zv1ukeG-Me1Ht0TIsYbAwMKr7fMpxjhhc1zB9DzNrPkIxHRWGwTk0HEGXfZKVweImHovT81eIbmX-N0I-xM2Eb_La"
                 className="card-img-top"
                 alt="profile photo"
               />

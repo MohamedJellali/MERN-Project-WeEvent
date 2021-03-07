@@ -8,22 +8,7 @@ function CarouselComponent() {
   return (
     <div>
       <Carousel>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src={car}
-            alt="First slide"
-            width="100%"
-            height="700px"
-          />
-          <div className="centered">
-            <h1>Let's Reach Our Goals Together</h1>
-          </div>
-          <Carousel.Caption>
-            <h2>Join Our Worldwide Community</h2>
-            <p>WeEvent.Com</p>
-          </Carousel.Caption>
-        </Carousel.Item>
+        
 
         <Carousel.Item>
           <img
@@ -35,6 +20,23 @@ function CarouselComponent() {
           />
           <div className="centered">
             <h1>Let's Discuss Our Ideas Together</h1>
+          </div>
+          <Carousel.Caption>
+            <h2>Join Our Worldwide Community</h2>
+            <p>WeEvent.Com</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src={car}
+            alt="First slide"
+            width="100%"
+            height="700px"
+          />
+          <div className="centered">
+            <h1>Let's Reach Our Goals Together</h1>
           </div>
           <Carousel.Caption>
             <h2>Join Our Worldwide Community</h2>

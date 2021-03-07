@@ -4,6 +4,7 @@ import { Button } from "reactstrap";
 import { useHistory } from "react-router-dom";
 import EventList from "../EventList";
 import { getEvents } from "../../../js/actions/gettingActions";
+import ClearIcon from "@material-ui/icons/Clear";
 
 function Running() {
   const history = useHistory();
@@ -19,6 +20,9 @@ function Running() {
     getAllEvents();
   }, []);
 
+  const [searched, setSearched] = useState("");
+  const [dateT, setDateT] = useState();
+
   return (
     <div
       style={{
@@ -26,22 +30,71 @@ function Running() {
         backgroundRepeat: "repeat",
         height: "100%",
         backgroundSize: "cover",
+        // display:'flex',
+        // flexWrap: 'wrap',
       }}
     >
       <div
-      style={{
-        width: "100%",
-        height: "100px",
-      }}
+        style={{
+          width: "100%",
+          height: "100px",
+        }}
       ></div>
-      <div style ={{ display:'flex', flexDirection:'column', alignItems:'center'}}>
-      <Button onClick={() => history.push("/sports")}>
-        Comeback to Sports Page
-      </Button>
-      <h1 style={{color:'white'}}>Running Activities Page</h1>
-      <EventList activity="Running" />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <h1 style={{ color: "white" }}>Running Activities Page</h1>
+        <Button onClick={() => history.push("/sports")}>
+          Comeback to Sports Page
+        </Button>
+        <div style={{ display: "flex" }}>
+          <input
+            type="text"
+            placeholder="Search"
+            value={searched}
+            name="Search"
+            style={{ borderRadius: "30px", width: "400px" }}
+            onChange={(e) => setSearched(e.target.value)}
+          />
 
-      {/* {isAuth ? 
+          <input
+            type="date"
+            style={{ borderRadius: "30px", width: "200px" }}
+            placeholder="date"
+            value={dateT}
+            name="date"
+            onChange={(e) => setDateT(e.target.value)}
+          />
+          <Button
+            style={{
+              backgroundColor: "transparent",
+              backgroundRepeat: "no-repeat",
+              border: "none",
+              cursor: "pointer",
+              overflow: "hidden",
+              outline: "none",
+              color: "black",
+            }}
+            onClick={() => {
+              setDateT();
+              setSearched("");
+            }}
+          >
+            <ClearIcon />
+          </Button>
+        </div>
+        {/* <IconButton type="submit" className={classes.iconButton} aria-label="search">
+        <SearchIcon />
+      </IconButton> */}
+
+        {/* <div style={{position: 'absolute',}}> */}
+        <EventList activity="Running" searched={searched} dateT={dateT} />
+        {/* </div> */}
+        {/* {isAuth ? 
       <Button onClick={() => history.push('/add')}>Creat Event</Button>
       : null} */}
       </div>

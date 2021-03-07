@@ -14,7 +14,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import CreateIcon from "@material-ui/icons/Create";
 import Button from "@material-ui/core/Button";
 import UpdateEventModal from "./UpdateEventModal";
-import './Dashboard.css'
+import "./Dashboard.css";
+import Board from "../../photos/board.PNG";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -23,10 +24,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Dashboard = () => {
-
-const [affichage, setAffichage] = useState(1);
-
-
+  const [affichage, setAffichage] = useState(1);
+  const [categ, setCateg] = useState("");
 
   //material ui
   const classes = useStyles();
@@ -58,6 +57,7 @@ const [affichage, setAffichage] = useState(1);
     getAllEvents();
   }, []);
 
+  const [searched, setSearched] = useState("");
   // delete event
   // const deleteEventFunc = () => {
   //   dispatch(deleteEvent(event._id));
@@ -67,123 +67,257 @@ const [affichage, setAffichage] = useState(1);
     return <h1>Spinner.....</h1>;
   } else if (user.role == "admin") {
     return (
-      <div className="list">
+      <div
+        className="list"
+        style={{
+          // backgroundRepeat: "repeat",
+          backgroundColor: "#C8C6C4",
+          height: "100%",
+          backgroundSize: "cover",
+          // display:'flex',
+          // flexWrap: 'wrap',
+        }}
+      >
         <div
           style={{
-            background:
-              "url(https://ca-times.brightspotcdn.com/dims4/default/bde3030/2147483647/strip/true/crop/2160x300+0+0/resize/1080x150!/quality/90/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F1a%2F1f%2Fb7c46b154772aabad3b12c020f11%2Fla-coronavirus-love-story-callout-dp-small2.jpg) no-repeat top center",
+            backgroundImage: "url(" + Board + ")",
             width: "100%",
             height: "150px",
           }}
         ></div>
         <Button onClick={() => history.push("/")}>Home Page</Button>
         <Button onClick={() => setAffichage(1)}>Users</Button>
-        <Button onClick={() => setAffichage(2)}>Events</Button>
-        <Button onClick={() => setAffichage(3)}>My created Events</Button>
-        {console.log(affichage)}
+        <Button onClick={() => setAffichage(2)}>Created Events</Button>
 
         <h1>
-          Admin {user.name} {user.lastName} : {user.email}
+         Welcome Admin {user.name} {user.lastName} : {user.email}
         </h1>
-
-        <h3>Members List : </h3>
-        <div
-          style={{display: "flex",justifyContent: "space-around",flexWrap: "wrap",margin: "80px 80px 40px 80px",}}
-        >
-          {users.map((user) =>
-            user.role != "admin" ? (
-              <ProfileCard key={user.id} user={user} />
-            ) : null
-          )}
-        </div>
-
-        <h4>My Events Created</h4>
-        <div
-          style={{display: "flex",justifyContent: "space-around",flexWrap: "wrap",margin: "80px 80px 40px 80px",}}
-        >
-          {events.reverse().map((event) =>
-            event.organizer == `${user.name} ${user.lastName}` ? (
-              <div>
-                <EventCard key={event.id} event={event} />
-                <div
-                  style={{display: "flex",justifyContent: "space-around",}}
-                >
-                  <Button variant="contained" style={{backgroundColor: "#F4364C",color: "#FFFFFF",}} className={classes.button} startIcon={<DeleteIcon />}
-                    onClick={() => {
-                      dispatch(deleteEvent(event._id));
-                    }}
-                  >
-                    Delete
-                  </Button>
-                  <UpdateEventModal event={event} />
-                </div>
-              </div>
-            ) : null
-          )}
-        </div>
-
-        <h4>All Events : </h4>
-        <div className='listCard'>
-        {events.reverse().reverse().map((event) =>
-          true ? (
-            <div className="itemCardAll">
-              <EventCard key={event.id} event={event} />
-              <Button
-                variant="contained"
-                style={{
-                  backgroundColor: "#F4364C",
-                  color: "#FFFFFF",
-                  width: '100px',
-                }}
-                className={classes.button}
-                startIcon={<DeleteIcon />}
-                onClick={() => {
-                  dispatch(deleteEvent(event._id));
-                }}
-              >
-                Delete
-              </Button>
+        {affichage == 1 ? (
+          <div>
+            {" "}
+            <h3>Members List : </h3>
+            <input
+            type="text"
+            placeholder="Search"
+            value={searched}
+            name="Search"
+            style={{ borderRadius: "30px", width: "400px" }}
+            onChange={(e) => setSearched(e.target.value)}
+          />
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-around",
+                flexWrap: "wrap",
+                margin: "20px 80px 40px 80px",
+              }}
+            >
+              {users.filter(
+            (user) =>
+              user.name
+                .toLowerCase()
+                .includes(searched.toLowerCase()) || user.lastName.toLowerCase().includes(searched.toLowerCase())
+          ).map((user) =>
+                user.role != "admin" ? (
+                  <ProfileCard key={user.id} user={user} />
+                ) : null
+              )}
             </div>
-          ) : null
+          </div>
+        ) : (
+          <div>
+            {" "}
+            <h4>Your Created Events</h4>
+            <Button onClick={() => setCateg("Running")}>Running</Button>
+            <Button onClick={() => setCateg("Fitness")}>Fitness</Button>
+            <Button onClick={() => setCateg("Biking")}>Biking</Button>
+            <Button onClick={() => setCateg("Camping/Hiking")}>
+              Camping/Hiking
+            </Button>
+            <Button onClick={() => setCateg("Yoga/Meditation")}>
+              Yoga/Meditation
+            </Button>
+            <Button onClick={() => setCateg("Painting")}>Painting</Button>
+            <Button onClick={() => setCateg("ReviewingBooks")}>
+              Reviewing Books
+            </Button>
+            <Button onClick={() => setCateg("Charity")}>Charity</Button>
+            {<h3>{categ}</h3>}
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-around",
+                flexWrap: "wrap",
+                margin: "80px 80px 40px 80px",
+              }}
+            >
+              {!categ ? (
+                <h4>Please Choose an activity to display your activities</h4>
+              ) : null}
+
+              {events
+                .filter((event) => event.activity == categ)
+                .map((event) =>
+                  event.organizer == `${user.name} ${user.lastName}` ? (
+                    <div>
+                      <EventCard key={event.id} event={event} />
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-around",
+                        }}
+                      >
+                        <Button
+                          variant="contained"
+                          style={{
+                            backgroundColor: "#F4364C",
+                            color: "#FFFFFF",
+                          }}
+                          className={classes.button}
+                          startIcon={<DeleteIcon />}
+                          onClick={() => {
+                            dispatch(deleteEvent(event._id));
+                          }}
+                        >
+                          Delete
+                        </Button>
+                        <UpdateEventModal event={event} />
+                      </div>
+                    </div>
+                  ) : null
+                )}
+            </div>
+          </div>
         )}
-        </div>
       </div>
     );
   }
   return (
-    <div>
+    <div
+      className="list"
+      style={{
+        // backgroundRepeat: "repeat",
+        backgroundColor: "#C8C6C4",
+        height: "100%",
+        backgroundSize: "cover",
+        // display:'flex',
+        // flexWrap: 'wrap',
+      }}
+    >
+      <div
+        style={{
+          backgroundImage: "url(" + Board + ")",
+          width: "100%",
+          height: "150px",
+        }}
+      ></div>
       <Button onClick={() => history.push("/")}>Home Page</Button>
+      <Button onClick={() => setAffichage(1)}>Participated in</Button>
+      <Button onClick={() => setAffichage(2)}>Created Events</Button>
+
       <h1>
-        Member {user.name} {user.lastName} : {user.email}
+        Welcome {user.name} {user.lastName}
       </h1>
-      <h4>My Events Created</h4>
-      {events.reverse().map((event) =>
-        event.organizer == `${user.name} ${user.lastName}` ? (
-          <div>
-            <EventCard key={event.id} event={event} />
-            <Button
-              variant="contained"
-              style={{
-                backgroundColor: "#F4364C",
-                color: "#FFFFFF",
-              }}
-              className={classes.button}
-              startIcon={<DeleteIcon />}
-              onClick={() => {
-                dispatch(deleteEvent(event._id));
-              }}
-            >
-              Delete
-            </Button>
-            <UpdateEventModal event={event} />
+
+      {affichage == 2 ? (
+        <div>
+          <h4> Your Created Events</h4>
+          <Button onClick={() => setCateg("Running")}>Running</Button>
+          <Button onClick={() => setCateg("Fitness")}>Fitness</Button>
+          <Button onClick={() => setCateg("Biking")}>Biking</Button>
+          <Button onClick={() => setCateg("Camping/Hiking")}>
+            Camping/Hiking
+          </Button>
+          <Button onClick={() => setCateg("Yoga/Meditation")}>
+            Yoga/Meditation
+          </Button>
+          <Button onClick={() => setCateg("Painting")}>Painting</Button>
+          <Button onClick={() => setCateg("ReviewingBooks")}>
+            Reviewing Books
+          </Button>
+          <Button onClick={() => setCateg("Charity")}>Charity</Button>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-around",
+              flexWrap: "wrap",
+              margin: "80px 80px 40px 80px",
+            }}
+          >
+            {!categ ? (
+              <h4>Please Choose an activity to display your activities</h4>
+            ) : null}
+            {events
+              .filter((event) => event.activity == categ)
+              .map((event) =>
+                event.organizer == `${user.name} ${user.lastName}` ? (
+                  <div>
+                    <EventCard key={event.id} event={event} />
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-around",
+                      }}
+                    >
+                      <Button
+                        variant="contained"
+                        style={{
+                          backgroundColor: "#F4364C",
+                          color: "#FFFFFF",
+                        }}
+                        className={classes.button}
+                        startIcon={<DeleteIcon />}
+                        onClick={() => {
+                          dispatch(deleteEvent(event._id));
+                        }}
+                      >
+                        Delete
+                      </Button>
+                      <UpdateEventModal event={event} />
+                    </div>
+                  </div>
+                ) : null
+              )}
           </div>
-        ) : null
-      )}
-      <h4>My Events that i participated in</h4>
-      {events.reverse().map((event) =>
-        event.participant.includes(user._id) ? (
-          <EventCard key={event.id} event={event} />
-        ) : null
+        </div>
+      ) : (
+        <div>
+          {" "}
+          <h4>Your Participations</h4>
+          <Button onClick={() => setCateg("Running")}>Running</Button>
+          <Button onClick={() => setCateg("Fitness")}>Fitness</Button>
+          <Button onClick={() => setCateg("Biking")}>Biking</Button>
+          <Button onClick={() => setCateg("Camping/Hiking")}>
+            Camping/Hiking
+          </Button>
+          <Button onClick={() => setCateg("Yoga/Meditation")}>
+            Yoga/Meditation
+          </Button>
+          <Button onClick={() => setCateg("Painting")}>Painting</Button>
+          <Button onClick={() => setCateg("ReviewingBooks")}>
+            Reviewing Books
+          </Button>
+          <Button onClick={() => setCateg("Charity")}>Charity</Button>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-around",
+              flexWrap: "wrap",
+              margin: "80px 80px 40px 80px",
+            }}
+          >
+            {!categ ? (
+              <h4>Please Choose an activity to display your activities</h4>
+            ) : null}
+            {events
+              .filter((event) => event.activity == categ)
+              .map((event) =>
+                event.participant.includes(user._id) ? (
+                  <EventCard key={event.id} event={event} />
+                ) : null
+              )}
+          </div>
+        </div>
       )}
     </div>
   );
