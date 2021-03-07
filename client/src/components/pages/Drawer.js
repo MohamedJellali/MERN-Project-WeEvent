@@ -105,7 +105,7 @@ export default function DrawerComponent() {
           </Button>
         </ListItem>
         <ListItem style={{marginLeft:'30px'}}>
-          <Button onClick={() => history.push("/bikig")}>
+          <Button onClick={() => history.push("/biking")}>
             {" "}
             <ArrowForwardIosIcon style={{fontSize: '13px'}}/> Biking
           </Button>
@@ -113,20 +113,20 @@ export default function DrawerComponent() {
 
 
         <ListItem>
-          <Button onClick={() => history.push("/outdoors")}>
+          <Button onClick={() => history.push("/outdoor")}>
             {" "}
             <FilterHdrTwoToneIcon /> Outdoors
           </Button>
         </ListItem>
 
         <ListItem style={{marginLeft:'30px'}}>
-          <Button onClick={() => history.push("/running")}>
+          <Button onClick={() => history.push("/hikingCamping")}>
             {" "}
             <ArrowForwardIosIcon style={{fontSize: '13px'}}/> Camping/Hiking
           </Button>
         </ListItem>
         <ListItem style={{marginLeft:'30px'}}>
-          <Button onClick={() => history.push("/fitness")}>
+          <Button onClick={() => history.push("/yoga")}>
             {" "}
             <ArrowForwardIosIcon style={{fontSize: '13px'}}/> Yoga/Meditation
           </Button>
@@ -141,15 +141,15 @@ export default function DrawerComponent() {
         </ListItem>
 
         <ListItem style={{marginLeft:'30px'}}>
-          <Button onClick={() => history.push("/")}>
+          <Button onClick={() => history.push("/painting")}>
             {" "}
             <ArrowForwardIosIcon style={{fontSize: '13px'}}/> Painting
           </Button>
         </ListItem>
         <ListItem style={{marginLeft:'30px'}}>
-          <Button onClick={() => history.push("/")}>
+          <Button onClick={() => history.push("/review")}>
             {" "}
-            <ArrowForwardIosIcon style={{fontSize: '13px'}}/> Reviewing Books
+            <ArrowForwardIosIcon style={{fontSize: '13px'}}/> Books Reviews
           </Button>
         </ListItem>
 

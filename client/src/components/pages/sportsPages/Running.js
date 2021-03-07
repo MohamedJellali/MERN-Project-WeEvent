@@ -87,16 +87,9 @@ function Running() {
             <ClearIcon />
           </Button>
         </div>
-        {/* <IconButton type="submit" className={classes.iconButton} aria-label="search">
-        <SearchIcon />
-      </IconButton> */}
-
-        {/* <div style={{position: 'absolute',}}> */}
-        <EventList activity="Running" searched={searched} dateT={dateT} />
-        {/* </div> */}
-        {/* {isAuth ? 
-      <Button onClick={() => history.push('/add')}>Creat Event</Button>
-      : null} */}
+        <div>
+          <EventList activity="Running" searched={searched} dateT={dateT} />
+        </div>
       </div>
     </div>
   );

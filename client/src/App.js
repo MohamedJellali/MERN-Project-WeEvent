@@ -26,6 +26,7 @@ import RegisterPage from "./components/auth/RegisterPage";
 import EventPage from "./components/pages/EventPage";
 import { getEvents } from "./js/actions/gettingActions";
 import LoginPageAdd from "./components/auth/LoginPageAdd";
+import Charity from "./components/pages/CharityPages/Charity";
 
 function App() {
   const dispatch = useDispatch();
@@ -54,17 +55,24 @@ function App() {
           {/* <PrivateRoute exact path="/dashboard/:id" component={Dashboard} /> */}
           <PrivateRoute path="/dashboard" component={Dashboard} />
           <PrivateRoute path="/add" component={AddEvent} />
-
+{/* sports */}
           <Route path="/sports" component={Sports} />
           <Route path="/running" component={Running} />
           <Route path="/biking" component={Biking} />
           <Route path="/fitness" component={Fitness} />
-          <Route path="/arts" component={Arts} />
-          <Route path="/review" component={Books} />
-          <Route path="/painting" component={Painting} />
+{/* outdoors */}
           <Route path="/outdoor" component={Outdoor} />
           <Route path="/hikingCamping" component={Hiking} />
           <Route path="/yoga" component={Yoga} />
+
+{/* Arts */}
+          <Route path="/arts" component={Arts} />
+          <Route path="/painting" component={Painting} />
+          <Route path="/review" component={Books} />
+{/* Charity */}
+          <Route path="/charity" component={Charity} />
+
+
           {/* <Route path="/event/:id" render={(props) => <EventPage event={events} {...props} />} /> */}
           <Route path="/Login" component={LoginPage} />
           <Route path="/Loginn" component={LoginPageAdd} />

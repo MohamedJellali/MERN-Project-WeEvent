@@ -24,9 +24,9 @@ function Sports() {
         }}
       ></div>
 
-      <Button onClick={() => history.push("/")}>Home Page</Button>
-      <h1 style={{color:'white'}}>Sports Page</h1>
-      {isAuth ? <h2>Private settings</h2> : null}
+      {/* <Button onClick={() => history.push("/")}>Home Page</Button> */}
+      <h1 style={{color:'white'}}>Sports Community</h1>
+      {/* {isAuth ? <h2>Private settings</h2> : null} */}
       <Button onClick={() => history.push("/running")}>Running</Button>
       <Button onClick={() => history.push("/biking")}>Biking</Button>
       <Button onClick={() => history.push("/fitness")}>Fitness</Button>

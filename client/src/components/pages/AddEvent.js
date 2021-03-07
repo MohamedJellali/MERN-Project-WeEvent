@@ -151,7 +151,7 @@ function AddEvent() {
           <option>Yoga/Meditation</option>
           <option>Fitness</option>
           <option>Painting</option>
-          <option>ReviewingBooks</option>
+          <option>BooksReviews</option>
           <option>Charity</option>
         </Input>
         <Label for="address" style={{fontWeight: "bolder",}}>Address</Label>

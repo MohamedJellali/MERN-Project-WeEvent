@@ -7,7 +7,7 @@ import EventList from "../EventList";
 import { getEvents } from "../../../js/actions/gettingActions";
 import ClearIcon from "@material-ui/icons/Clear";
 
-function Books() {
+function Charity() {
   const history = useHistory();
   const isAuth = useSelector((state) => state.authReducer.isAuth);
   const dispatch = useDispatch();
@@ -27,7 +27,7 @@ function Books() {
   return (
     <div
       style={{
-        background: "url(https://images.unsplash.com/photo-1514593214839-ce1849100055?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80)",
+        background: "url(https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80)",
         backgroundRepeat: "repeat",
         height: "1300px",
         backgroundSize: "cover",
@@ -48,9 +48,9 @@ function Books() {
           alignItems: "center",
         }}
       >
-        <h1 style={{color:'black'}}>Books Reviews Activities Page</h1>
-        <Button onClick={() => history.push("/arts")}>
-          Comeback to Arts Page
+        <h1 style={{color:'white'}}>Charity Activities Page</h1>
+        <Button onClick={() => history.push("/Home")}>
+          Comeback to Home
         </Button>
         <div style={{ display: "flex" }}>
           <input
@@ -89,11 +89,11 @@ function Books() {
           </Button>
         </div>
         <div>
-          <EventList activity="BooksReviews" searched={searched} dateT={dateT} />
+          <EventList activity="Charity" searched={searched} dateT={dateT} />
         </div>
       </div>
     </div>
   );
 }
 
-export default Books;
+export default Charity;

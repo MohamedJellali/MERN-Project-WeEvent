@@ -15,7 +15,7 @@ const Home = () => {
       <CarouselComponent />
       <Jumbotron
         style={{
-          background: !isAuth ? "#FFFFFF" : "#FFCF20",
+          background: "#FFFFFF",
         }}
         fluid
       >
@@ -31,6 +31,17 @@ const Home = () => {
           </a>
         </Container>
       </Jumbotron>
+
+{/* <div style={{display:'flex', justifyContent:'center', alignItems:'center' ,height:'400px', backgroundColor:'grey'}}>
+
+<div style={{height:'80px', width: '80px', backgroundColor:'red'}}>Sports</div>
+<div style={{height:'80px', width: '80px', backgroundColor:'yellow'}}>Outdoors</div>
+<div style={{height:'80px', width: '80px', backgroundColor:'green'}}>Arts</div>
+<div style={{height:'80px', width: '80px', backgroundColor:'black'}}>Charity</div>
+
+</div> */}
+
+
       <Button onClick={() => history.push("/sports")}>Sports</Button>
       <Button onClick={() => history.push("/outdoor")}>Outdoors</Button>
       <Button onClick={() => history.push("/arts")}>Arts</Button>
