@@ -49,7 +49,7 @@ function Yoga() {
         }}
       >
         <h1 style={{ color: "white" }}>Yoga/Meditation Activities Page</h1>
-        <Button onClick={() => history.push("/outdoors")}>
+        <Button onClick={() => history.push("/outdoor")}>
           Comeback to Outdoors Page
         </Button>
         <div style={{ display: "flex" }}>
@@ -89,7 +89,7 @@ function Yoga() {
           </Button>
         </div>
         <div>
-          <EventList activity="Yoga/Meditation" searched={searched} dateT={dateT} />
+          <EventList activity="Yoga" searched={searched} dateT={dateT} />
         </div>
       </div>
     </div>

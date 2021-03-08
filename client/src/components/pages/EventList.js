@@ -5,12 +5,12 @@ import { getEvents } from "../../js/actions/gettingActions";
 import EventCard from "./EventCard";
 
 function EventList({ activity, searched, dateT }) {
-  function convertTime (time) {
+  function convertTime(time) {
     let year = time.slice(0, 4);
     let month = time.slice(5, 7);
     let day = time.slice(8, 10);
     return day + "/" + month + "/" + year;
-  };
+  }
   const dispatch = useDispatch();
   const getAllEvents = () => {
     dispatch(getEvents());
@@ -36,9 +36,7 @@ function EventList({ activity, searched, dateT }) {
           .filter((event) => convertTime(event.date) == convertTime(dateT))
           .filter(
             (event) =>
-              event.organizer
-                .toLowerCase()
-                .includes(searched.toLowerCase()) ||
+              event.organizer.toLowerCase().includes(searched.toLowerCase()) ||
               event.nameOfEvent
                 .toLowerCase()
                 .includes(searched.toLowerCase()) ||
@@ -71,12 +69,12 @@ function EventList({ activity, searched, dateT }) {
         {console.log(convertTime(dateT))}
         {events
           .filter((event) => convertTime(event.date) == convertTime(dateT))
-          .reverse()
           .map((event) =>
             event.activity == activity ? (
               <EventCard key={event.id} event={event} />
             ) : null
-          )}
+          )
+          .reverse()}
         <div style={{ width: "100%", height: "550px", color: "white" }}>
           <h2></h2>
         </div>
@@ -98,20 +96,18 @@ function EventList({ activity, searched, dateT }) {
         {events
           .filter(
             (event) =>
-              event.organizer
-                .toLowerCase()
-                .includes(searched.toLowerCase()) ||
+              event.organizer.toLowerCase().includes(searched.toLowerCase()) ||
               event.nameOfEvent
                 .toLowerCase()
                 .includes(searched.toLowerCase()) ||
               event.city.toLowerCase().includes(searched.toLowerCase())
           )
-          .reverse()
           .map((event) =>
             event.activity == activity ? (
               <EventCard key={event.id} event={event} />
             ) : null
-          )}
+          )
+          .reverse()}
         <div style={{ width: "100%", height: "550px", color: "white" }}>
           <h2></h2>
         </div>
@@ -134,12 +130,12 @@ function EventList({ activity, searched, dateT }) {
       {console.log("participate", events[0])} */}
 
       {events
-        .reverse()
         .map((event) =>
           event.activity == activity ? (
             <EventCard key={event.id} event={event} />
           ) : null
-        )}
+        )
+        .reverse()}
     </div>
   );
 }
