@@ -120,7 +120,7 @@ export default function DrawerComponent() {
         </ListItem>
 
         <ListItem style={{marginLeft:'30px'}}>
-          <Button onClick={() => history.push("/hikingCamping")}>
+          <Button onClick={() => history.push("/campinghiking")}>
             {" "}
             <ArrowForwardIosIcon style={{fontSize: '13px'}}/> Camping/Hiking
           </Button>

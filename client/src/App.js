@@ -62,7 +62,7 @@ function App() {
           <Route path="/fitness" component={Fitness} />
 {/* outdoors */}
           <Route path="/outdoor" component={Outdoor} />
-          <Route path="/hikingCamping" component={Hiking} />
+          <Route path="/campinghiking" component={Hiking} />
           <Route path="/yoga" component={Yoga} />
 
 {/* Arts */}

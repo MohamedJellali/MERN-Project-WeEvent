@@ -72,29 +72,26 @@ export default function EventCard({ event }) {
     return day + "/" + month + "/" + year;
   };
 
-
-const ImageCardd = (activity) => {
-  switch (activity) {
-    case "Running":
-      return "https://blog.mapmyrun.com/wp-content/uploads/2017/01/Why-Solo-Runners-Who-Should-Consider-a-Running-Group.jpg"
-    case "Biking":
-      return "https://static.toiimg.com/img/62488235/Master.jpg"
-    case "Fitness":
-      return "https://foreverfitscience.com/wp-content/uploads/2019/06/article2_ffs_6.12.19.jpg"
-    case "Camping/Hiking":
-      return "https://cf.ltkcdn.net/camping/images/orig/257248-1600x1030-group-camping-games-activities-adults.jpg"
-    case "Yoga/Meditation":
-      return "https://ad962edbae8ba7b03b7f-d10007df79b5b7a4e475a291e50a08cf.ssl.cf3.rackcdn.com/2189/ouvrir-un-studio-de-yoga.jpg"
-    case "Painting":
-      return "https://lessonsgowhere.com.sg/thumbnails/535x357/uploads/2014/05/21/Colourful%20Notes%20Art%20Class.jpg"
-    case "BooksReviews":
-      return "http://shop.tuscaloosahyundai.com/wp-content/uploads/sites/19/2017/03/iStock-583816330.jpg"
-    case "Charity":
-      return "https://image.freepik.com/free-photo/group-diverse-people-as-donation-community-service-volunteer_53876-38815.jpg"
-      
-  }
-}
-
+  const ImageCardd = (activity) => {
+    switch (activity) {
+      case "Running":
+        return "https://blog.mapmyrun.com/wp-content/uploads/2017/01/Why-Solo-Runners-Who-Should-Consider-a-Running-Group.jpg";
+      case "Biking":
+        return "https://static.toiimg.com/img/62488235/Master.jpg";
+      case "Fitness":
+        return "https://foreverfitscience.com/wp-content/uploads/2019/06/article2_ffs_6.12.19.jpg";
+      case "CampingHiking":
+        return "https://cf.ltkcdn.net/camping/images/orig/257248-1600x1030-group-camping-games-activities-adults.jpg";
+      case "Yoga":
+        return "https://ad962edbae8ba7b03b7f-d10007df79b5b7a4e475a291e50a08cf.ssl.cf3.rackcdn.com/2189/ouvrir-un-studio-de-yoga.jpg";
+      case "Painting":
+        return "https://lessonsgowhere.com.sg/thumbnails/535x357/uploads/2014/05/21/Colourful%20Notes%20Art%20Class.jpg";
+      case "BooksReviews":
+        return "http://shop.tuscaloosahyundai.com/wp-content/uploads/sites/19/2017/03/iStock-583816330.jpg";
+      case "Charity":
+        return "https://image.freepik.com/free-photo/group-diverse-people-as-donation-community-service-volunteer_53876-38815.jpg";
+    }
+  };
 
   const convertTimeMore = (time) => {
     let year = time.slice(0, 4);
@@ -202,12 +199,7 @@ const ImageCardd = (activity) => {
             alignItems: "center",
           }}
         >
-
-          <img
-            src={ImageCardd(event.activity)}
-            alt="photo"
-            height="200px"
-          />
+          <img src={ImageCardd(event.activity)} alt="photo" height="200px" />
 
           <CardContent
             style={{
@@ -221,32 +213,32 @@ const ImageCardd = (activity) => {
               </Link>
             </Typography>
           </CardContent>
-       
-        <CardActions disableSpacing>
-          <Button
-            variant="contained"
-            size="small"
-            variant="outlined"
-            className={classes.button}
-            startIcon={!toggle ? <DoneIcon /> : <DoneAllIcon />}
-            color={!toggle ? "primary" : "secondary"}
-            onClick={participateToEvent}
-          >
-            {!toggle ? "Participate" : "Participated"}
-          </Button>
-          {/* <div style={{width:'100px'}}></div> */}
-          {user.role == "admin" ? (
-            <IconButton
-              aria-label="delete"
-              className={classes.margin}
-              onClick={() => {
-                dispatch(deleteEvent(event._id));
-              }}
+
+          <CardActions disableSpacing>
+            <Button
+              variant="contained"
+              size="small"
+              variant="outlined"
+              className={classes.button}
+              startIcon={!toggle ? <DoneIcon /> : <DoneAllIcon />}
+              color={!toggle ? "primary" : "secondary"}
+              onClick={participateToEvent}
             >
-              <DeleteIcon fontSize="large" />
-            </IconButton>
-          ) : null}
-        </CardActions>
+              {!toggle ? "Participate" : "Participated"}
+            </Button>
+            {/* <div style={{width:'100px'}}></div> */}
+            {user.role == "admin" ? (
+              <IconButton
+                aria-label="delete"
+                className={classes.margin}
+                onClick={() => {
+                  dispatch(deleteEvent(event._id));
+                }}
+              >
+                <DeleteIcon fontSize="large" />
+              </IconButton>
+            ) : null}
+          </CardActions>
         </div>
         <Collapse in={expanded} timeout="auto" unmountOnExit></Collapse>
       </Card>
@@ -294,11 +286,7 @@ const ImageCardd = (activity) => {
             justifyContent: "center",
           }}
         >
-          <img
-            src={ImageCardd(event.activity)}
-            alt="photo"
-            height="200px"
-          />
+          <img src={ImageCardd(event.activity)} alt="photo" height="200px" />
 
           <CardContent
             style={{
@@ -326,9 +314,8 @@ const ImageCardd = (activity) => {
               {!toggle ? "Participate" : "Participated"}
             </Button>
           </CardActions>
-        <Collapse in={expanded} timeout="auto" unmountOnExit></Collapse>
+          <Collapse in={expanded} timeout="auto" unmountOnExit></Collapse>
         </div>
-
       </Card>
     );
   }

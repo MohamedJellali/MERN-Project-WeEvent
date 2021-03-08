@@ -71,7 +71,8 @@ const Dashboard = () => {
         className="list"
         style={{
           // backgroundRepeat: "repeat",
-          backgroundColor: "#C8C6C4",
+          backgroundColor: "white",
+          // backgroundColor: "#C8C6C4",
           height: "100%",
           backgroundSize: "cover",
           // display:'flex',
@@ -85,12 +86,30 @@ const Dashboard = () => {
             height: "150px",
           }}
         ></div>
+        <div style={{backgroundColor:'#C0C0C0'}}>
         <Button onClick={() => history.push("/")}>Home Page</Button>
         <Button onClick={() => setAffichage(1)}>Users</Button>
         <Button onClick={() => setAffichage(2)}>Created Events</Button>
+        </div>
+        <div style={{backgroundColor:'#DCDCDC',}}>
+          <Button onClick={() => setCateg("Running")}>Running</Button>
+          <Button onClick={() => setCateg("Fitness")}>Fitness</Button>
+          <Button onClick={() => setCateg("Biking")}>Biking</Button>
+          <Button onClick={() => setCateg("Camping/Hiking")}>
+            Camping/Hiking
+          </Button>
+          <Button onClick={() => setCateg("Yoga")}>
+            Yoga/Meditation
+          </Button>
+          <Button onClick={() => setCateg("Painting")}>Painting</Button>
+          <Button onClick={() => setCateg("BooksReviews")}>
+            Books Reviews
+          </Button>
+          <Button onClick={() => setCateg("Charity")}>Charity</Button>
+          </div>
 
         <h1>
-         Welcome Admin {user.name} {user.lastName} : {user.email}
+         Welcome Admin {user.name} {user.lastName}
         </h1>
         {affichage == 1 ? (
           <div>
@@ -127,22 +146,8 @@ const Dashboard = () => {
         ) : (
           <div>
             {" "}
-            <h4>Your Created Events</h4>
-            <Button onClick={() => setCateg("Running")}>Running</Button>
-            <Button onClick={() => setCateg("Fitness")}>Fitness</Button>
-            <Button onClick={() => setCateg("Biking")}>Biking</Button>
-            <Button onClick={() => setCateg("Camping/Hiking")}>
-              Camping/Hiking
-            </Button>
-            <Button onClick={() => setCateg("Yoga/Meditation")}>
-              Yoga/Meditation
-            </Button>
-            <Button onClick={() => setCateg("Painting")}>Painting</Button>
-            <Button onClick={() => setCateg("ReviewingBooks")}>
-              Reviewing Books
-            </Button>
-            <Button onClick={() => setCateg("Charity")}>Charity</Button>
-            {<h3>{categ}</h3>}
+            <h3>Your Created Events : </h3>
+            {<h4>{categ}</h4>}
             <div
               style={{
                 display: "flex",
@@ -152,7 +157,7 @@ const Dashboard = () => {
               }}
             >
               {!categ ? (
-                <h4>Please Choose an activity to display your activities</h4>
+                <div style={{height:'500px'}}><h4>Please Choose an activity to display your activities</h4></div>
               ) : null}
 
               {events
@@ -197,7 +202,8 @@ const Dashboard = () => {
       className="list"
       style={{
         // backgroundRepeat: "repeat",
-        backgroundColor: "#C8C6C4",
+        // backgroundColor: "#C8C6C4",
+        backgroundColor: "white",
         height: "100%",
         backgroundSize: "cover",
         // display:'flex',
@@ -211,31 +217,35 @@ const Dashboard = () => {
           height: "150px",
         }}
       ></div>
+      <div style={{backgroundColor:'#C0C0C0'}}>
       <Button onClick={() => history.push("/")}>Home Page</Button>
       <Button onClick={() => setAffichage(1)}>Participated in</Button>
       <Button onClick={() => setAffichage(2)}>Created Events</Button>
-
-      <h1>
-        Welcome {user.name} {user.lastName}
-      </h1>
-
-      {affichage == 2 ? (
-        <div>
-          <h4> Your Created Events</h4>
+</div>
+<div style={{backgroundColor:'#DCDCDC',}}>
           <Button onClick={() => setCateg("Running")}>Running</Button>
           <Button onClick={() => setCateg("Fitness")}>Fitness</Button>
           <Button onClick={() => setCateg("Biking")}>Biking</Button>
           <Button onClick={() => setCateg("Camping/Hiking")}>
             Camping/Hiking
           </Button>
-          <Button onClick={() => setCateg("Yoga/Meditation")}>
+          <Button onClick={() => setCateg("Yoga")}>
             Yoga/Meditation
           </Button>
           <Button onClick={() => setCateg("Painting")}>Painting</Button>
-          <Button onClick={() => setCateg("ReviewingBooks")}>
-            Reviewing Books
+          <Button onClick={() => setCateg("BooksReviews")}>
+            Books Reviews
           </Button>
           <Button onClick={() => setCateg("Charity")}>Charity</Button>
+          </div>
+      <h1>
+        Welcome {user.name} {user.lastName}
+      </h1>
+
+      {affichage == 2 ? (
+        <div>
+          <h3> Your Created Events :</h3>
+          {<h4>{categ}</h4>}
           <div
             style={{
               display: "flex",
@@ -283,21 +293,8 @@ const Dashboard = () => {
       ) : (
         <div>
           {" "}
-          <h4>Your Participations</h4>
-          <Button onClick={() => setCateg("Running")}>Running</Button>
-          <Button onClick={() => setCateg("Fitness")}>Fitness</Button>
-          <Button onClick={() => setCateg("Biking")}>Biking</Button>
-          <Button onClick={() => setCateg("Camping/Hiking")}>
-            Camping/Hiking
-          </Button>
-          <Button onClick={() => setCateg("Yoga/Meditation")}>
-            Yoga/Meditation
-          </Button>
-          <Button onClick={() => setCateg("Painting")}>Painting</Button>
-          <Button onClick={() => setCateg("ReviewingBooks")}>
-            Reviewing Books
-          </Button>
-          <Button onClick={() => setCateg("Charity")}>Charity</Button>
+          <h3>Your Participations in : </h3>
+          {<h4>{categ}</h4>}
           <div
             style={{
               display: "flex",
@@ -307,7 +304,7 @@ const Dashboard = () => {
             }}
           >
             {!categ ? (
-              <h4>Please Choose an activity to display your activities</h4>
+              <div style={{height:'500px'}}><h4>Please Choose an activity to display your activities</h4></div>
             ) : null}
             {events
               .filter((event) => event.activity == categ)

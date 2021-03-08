@@ -27,7 +27,7 @@ function Outdoor() {
       {/* <Button onClick={() => history.push("/")}>Home Page</Button> */}
       <h1 style={{color:'white'}}>Outdoors Community</h1>
       {/* {isAuth ? <h2>Private settings</h2> : null} */}
-      <Button onClick={() => history.push("/hikingCamping")}>Camping/Hiking</Button>
+      <Button onClick={() => history.push("/campinghiking")}>Camping/Hiking</Button>
       <Button onClick={() => history.push("/yoga")}>Yoga/Meditation</Button>
     </div>
   );

@@ -26,7 +26,7 @@ function ProfileCard({ user }) {
           <div className="card-body">
             <div className="avatar">
               <img
-                src="https://lh3.googleusercontent.com/proxy/uX8QQemoV3GFrKwC61haw75WuI2K_0cGa__zv1ukeG-Me1Ht0TIsYbAwMKr7fMpxjhhc1zB9DzNrPkIxHRWGwTk0HEGXfZKVweImHovT81eIbmX-N0I-xM2Eb_La"
+                src="https://images-eu.ssl-images-amazon.com/images/I/21cajMvmjVL.png"
                 className="card-img-top"
                 alt="profile photo"
               />
