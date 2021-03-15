@@ -32,6 +32,11 @@ app.get('*', (request, response) => {
 	response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
+app.use(express.static('dist'));
+app.get('*', (request, response) => {
+response.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+
 
 //launch the server
 const port = process.env.PORT || 5000;
