@@ -8,6 +8,9 @@
     "client": "cd client && npm start ",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "cd client && npm install && npm run build"
+
+
+
   },
   "author": "MJ",
   "license": "ISC",

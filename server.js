@@ -6,6 +6,7 @@ const app = express();
 const authRouter = require("./routes/auth");
 const eventRouter = require("./routes/eventRouter");
 const addRouter = require("./routes/addRouter");
+const path = require('path')
 //middlewares
 app.use(express.json());
 
@@ -20,11 +21,12 @@ app.use("/api", addRouter);
 
 //Heroku
 
-// if (process.env.NODE_ENV === 'production') {
-//   app.use(express.static('client/build'));
-//   app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
-//   });
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
 
 //launch the server
