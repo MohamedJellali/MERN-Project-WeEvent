@@ -68,7 +68,7 @@ function App() {
 {/* Arts */}
           <Route path="/arts" component={Arts} />
           <Route path="/painting" component={Painting} />
-          <Route path="/review" component={Books} />
+          <Route path="/booksreviews" component={Books} />
 {/* Charity */}
           <Route path="/charity" component={Charity} />
 

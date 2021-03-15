@@ -89,7 +89,7 @@ function Hiking() {
           </Button>
         </div>
         <div>
-          <EventList activity="Camping/Hiking" searched={searched} dateT={dateT} />
+          <EventList activity="CampingHiking" searched={searched} dateT={dateT} />
         </div>
       </div>
     </div>

@@ -28,7 +28,7 @@ function Arts() {
       <h1>Arts Community</h1>
       {/* {isAuth ? <h2>Private settings</h2> : null} */}
       <Button onClick={() => history.push("/painting")}>Painting</Button>
-      <Button onClick={() => history.push("/review")}>Reviewing Books</Button>
+      <Button onClick={() => history.push("/booksreviews")}>Books Reviews</Button>
     </div>
   );
 }
