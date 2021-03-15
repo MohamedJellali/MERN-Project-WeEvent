@@ -17,6 +17,16 @@ app.use("/api/auth", authRouter);
 app.use("/api/event", eventRouter);
 app.use("/api", addRouter);
 
+
+//Heroku
+
+// if (process.env.NODE_ENV === 'production') {
+//   app.use(express.static('client/build'));
+//   app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+//   });
+
+
 //launch the server
 const port = process.env.PORT || 5000;
 app.listen(port, (err) => {
