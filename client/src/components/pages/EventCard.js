@@ -252,6 +252,7 @@ export default function EventCard({ event }) {
         style={{
           boxShadow: "0 0 1px 1px rgba(0,0,0,.2)",
           marginTop: "30px",
+          marginLeft: "20px",
           backgroundColor: "#EFF0F1",
           // "#FFCE01",
         }}
