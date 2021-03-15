@@ -1,17 +1,16 @@
 
-
+/* events pages */
 .search {
     display: flex;
 }
 
 @media only screen and (max-width: 600px) {
-
     .search {
-
         flex-direction: column;
         justify-content: center;
         align-items: center;
- 
     }
-
 }
+
+/* home page */
+

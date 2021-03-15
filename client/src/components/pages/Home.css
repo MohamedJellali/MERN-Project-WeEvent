@@ -1,4 +1,48 @@
 
+.communities {
+
+    display: flex;
+     justify-content: space-between; 
+     width: 90%;
+     height: 30%;
+     margin-left: 80px;
+     /* margin-top 80px;  */
+     border-radius: 30px;
+     margin-top: 1%;
+}
+
+.immg {
+    border-radius: 30px;
+    width:400px; 
+    height:500px;
+}
+.immgg {
+    border-radius: 30px;
+    width:430px; 
+    height:500px;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+
+    .communities {
+
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+ 
+    }
+
+}
+
+
+
+
+
+
+
+
 .container:before {
   content:"";
   position:absolute;

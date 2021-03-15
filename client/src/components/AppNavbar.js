@@ -44,18 +44,19 @@ const AppNavbar = () => {
   return (
     <div>
       <Navbar
-        className="d-flex justify-content-between"
-        style={{
-          textDecoration: "none",
-          backgroundColor: "rgba(255, 255, 255, 0.7)",
-          // backgroundColor: "white",
-          boxShadow: "0 2px 4px 0 rgba(0,0,0,.2)",
-          position: "fixed",
-          right: "0",
-          left: "0",
-          top: "0",
-          zIndex: "1030",
-        }}
+        className="bar"
+        // style={{
+        //   textDecoration: "none",
+        //   backgroundColor: "rgba(255, 255, 255, 0.7)",
+        //   // backgroundColor: "white",
+        //   boxShadow: "0 2px 4px 0 rgba(0,0,0,.2)",
+        //   position: "fixed",
+        //   right: "0",
+        //   left: "0",
+        //   top: "0",
+        //   zIndex: "1030",
+          
+        // }}
         dark
       >
         <DrawerComponent />

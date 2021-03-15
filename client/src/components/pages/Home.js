@@ -18,8 +18,8 @@ const Home = () => {
 
       <Jumbotron style={{backgroundColor:'white'}}>
   <h2 style={{fontSize: '200%', color: 'black'}}>Discover our Communities</h2>
-  <div style={{display:'flex', justifyContent:'space-between', width:'90%', height:'30%',marginLeft:'80px', marginTop:'80px', borderRadius: "30px", marginTop:'1%'}}>
-<div style={{ borderRadius: "30px", width:'23%', height:'10%' }}>
+  <div className='communities'>
+<div className='immg'>
   <Link to='/sports'>
 <Image
             src="https://images.unsplash.com/photo-1591311630200-ffa9120a540f?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=998&q=80"
@@ -30,7 +30,7 @@ const Home = () => {
             
          <h3>Sports</h3>
 </div>
-<div style={{ borderRadius: "30px", width:'25%', height:'11%' }}>
+<div className='immgg'>
   <Link to='/outdoor'>
 <Image
             src="https://images.unsplash.com/photo-1563299796-17596ed6b017?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80"
@@ -41,7 +41,7 @@ const Home = () => {
             
          <h3>Outdoors</h3>
 </div>
-<div style={{ borderRadius: "30px", width:'25%', height:'10%' }}>
+<div className='immgg'>
   <Link to='/arts'>
 <Image
             src="https://images.unsplash.com/photo-1600693437693-e3eb10df2677?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80"
@@ -52,7 +52,7 @@ const Home = () => {
             
          <h3>Arts</h3>
 </div>
-<div style={{ borderRadius: "30px", width:'25%', height:'10%' }}>
+<div className='immgg'>
   <Link to='/charity'>
 <Image
             src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
@@ -78,7 +78,7 @@ const Home = () => {
       <Jumbotron
         style={{
           background: "white",
-          marginTop:'-8%'
+          marginTop:'-21%'
           // height: "300px",
           // display: "flex",
           // flexDirection: "column",
