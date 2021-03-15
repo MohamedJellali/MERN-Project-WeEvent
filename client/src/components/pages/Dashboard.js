@@ -91,6 +91,7 @@ const Dashboard = () => {
         <Button onClick={() => setAffichage(1)}>Users</Button>
         <Button onClick={() => setAffichage(2)}>Created Events</Button>
         </div>
+        {affichage == 2 ? 
         <div style={{backgroundColor:'#DCDCDC',}}>
           <Button onClick={() => setCateg("Running")}>Running</Button>
           <Button onClick={() => setCateg("Fitness")}>Fitness</Button>
@@ -107,6 +108,7 @@ const Dashboard = () => {
           </Button>
           <Button onClick={() => setCateg("Charity")}>Charity</Button>
           </div>
+:null}
 
         <h1>
          Welcome Admin {user.name} {user.lastName}
