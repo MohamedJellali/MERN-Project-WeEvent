@@ -52,7 +52,7 @@ function Fitness() {
         <Button onClick={() => history.push("/sports")}>
           Comeback to Sports Page
         </Button>
-        <div style={{ display: "flex" }}>
+        <div className='search'>
           <input
             type="text"
             placeholder="Search"

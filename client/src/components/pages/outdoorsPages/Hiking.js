@@ -52,7 +52,7 @@ function Hiking() {
         <Button onClick={() => history.push("/outdoor")}>
           Comeback to Outdoors Page
         </Button>
-        <div style={{ display: "flex" }}>
+        <div className='search'>
           <input
             type="text"
             placeholder="Search"

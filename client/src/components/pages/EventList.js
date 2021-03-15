@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { getEvents } from "../../js/actions/gettingActions";
 import EventCard from "./EventCard";
+import './Eventlist.css'
 
 function EventList({ activity, searched, dateT }) {
   function convertTime(time) {
@@ -22,15 +23,15 @@ function EventList({ activity, searched, dateT }) {
   if (dateT && searched) {
     return (
       <div
-        className="list"
-        style={{
-          display: "flex",
-          justifyContent: "space-around",
-          flexWrap: "wrap",
-          margin: "20px 80px 40px 80px",
-          width: "1100px",
-          // backgroundColor: "#FFCE01",
-        }}
+        className="affichage"
+        // style={{
+        //   display: "flex",
+        //   justifyContent: "space-around",
+        //   flexWrap: "wrap",
+        //   margin: "20px 80px 40px 80px",
+        //   width: "1100px",
+        //   // backgroundColor: "#FFCE01",
+        // }}
       >
         {events
           .filter((event) => convertTime(event.date) == convertTime(dateT))
@@ -48,7 +49,7 @@ function EventList({ activity, searched, dateT }) {
               <EventCard key={event.id} event={event} />
             ) : null
           )}
-        <div style={{ width: "100%", height: "550px", color: "white" }}>
+        <div className='foot'>
           <h2></h2>
         </div>
       </div>
@@ -56,15 +57,15 @@ function EventList({ activity, searched, dateT }) {
   } else if (dateT) {
     return (
       <div
-        className="list"
-        style={{
-          display: "flex",
-          justifyContent: "space-around",
-          flexWrap: "wrap",
-          margin: "20px 80px 40px 80px",
-          width: "1100px",
+      className="affichage"
+        // style={{
+        //   display: "flex",
+        //   justifyContent: "space-around",
+        //   flexWrap: "wrap",
+        //   margin: "20px 80px 40px 80px",
+        //   width: "1100px",
           // backgroundColor: "#FFCE01",
-        }}
+        // }}
       >
         {console.log(convertTime(dateT))}
         {events
@@ -75,7 +76,7 @@ function EventList({ activity, searched, dateT }) {
             ) : null
           )
           .reverse()}
-        <div style={{ width: "100%", height: "550px", color: "white" }}>
+        <div className='foot'>
           <h2></h2>
         </div>
       </div>
@@ -83,15 +84,15 @@ function EventList({ activity, searched, dateT }) {
   } else if (searched) {
     return (
       <div
-        className="list"
-        style={{
-          display: "flex",
-          justifyContent: "space-around",
-          flexWrap: "wrap",
-          margin: "20px 80px 40px 80px",
-          width: "1100px",
-          // backgroundColor: "#FFCE01",
-        }}
+      className="affichage"
+        // style={{
+        //   display: "flex",
+        //   justifyContent: "space-around",
+        //   flexWrap: "wrap",
+        //   margin: "20px 80px 40px 80px",
+        //   width: "1100px",
+        //   // backgroundColor: "#FFCE01",
+        // }}
       >
         {events
           .filter(
@@ -108,7 +109,7 @@ function EventList({ activity, searched, dateT }) {
             ) : null
           )
           .reverse()}
-        <div style={{ width: "100%", height: "550px", color: "white" }}>
+        <div className='foot'>
           <h2></h2>
         </div>
       </div>
@@ -116,15 +117,15 @@ function EventList({ activity, searched, dateT }) {
   }
   return (
     <div
-      className="list"
-      style={{
-        display: "flex",
-        justifyContent: "space-around",
-        flexWrap: "wrap",
-        margin: "20px 80px 40px 80px",
-        width: "1100px",
-        // backgroundColor: "#FFCE01",
-      }}
+    className="affichage"
+      // style={{
+      //   display: "flex",
+      //   justifyContent: "space-around",
+      //   flexWrap: "wrap",
+      //   margin: "20px 80px 40px 80px",
+      //   width: "1100px",
+      //   // backgroundColor: "#FFCE01",
+      // }}
     >
       {/* {console.log("hhhh", events)}
       {console.log("participate", events[0])} */}

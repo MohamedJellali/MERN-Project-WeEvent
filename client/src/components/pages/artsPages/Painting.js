@@ -52,7 +52,7 @@ function Painting() {
         <Button onClick={() => history.push("/arts")}>
           Comeback to Arts Page
         </Button>
-        <div style={{ display: "flex" }}>
+        <div className='search'>
           <input
             type="text"
             placeholder="Search"

@@ -52,7 +52,7 @@ function Charity() {
         <Button onClick={() => history.push("/Home")}>
           Comeback to Home
         </Button>
-        <div style={{ display: "flex" }}>
+        <div className='search'>
           <input
             type="text"
             placeholder="Search"
