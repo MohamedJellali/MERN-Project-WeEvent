@@ -266,7 +266,7 @@ export default function EventCard({ event }) {
           action={
             <IconButton aria-label="share">
               <FacebookShareButton
-                url={"http://www.youtube.com"}
+                url={`https://myprojectweevent.herokuapp.com/event/${event._id}`}
                 quote={
                   "Hello Guys, Let's Event-It, Join me in this wonderful event"
                 }
