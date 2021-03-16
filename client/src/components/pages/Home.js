@@ -7,17 +7,19 @@ import CarouselComponent from "./Carousel";
 import FooterPage from "./Footer";
 import './Home.css'
 import cover from '../../photos/couvre.jpg'
+import FeaturedPost from "./Posts";
+import JumbotronPage from "./About";
 
 const Home = () => {
   const history = useHistory();
   const isAuth = useSelector((state) => state.authReducer.isAuth);
   // style={{ backgroundImage: `url(${bgimage})`, backgroundSize: 'cover' }}
   return (
-    <div style={{backgroundColor:'#F7F7F7'}}>
+    <div >
       <CarouselComponent />
 
       <Jumbotron style={{backgroundColor:'white'}}>
-  <h2 style={{fontSize: '200%', color: 'black'}}>Discover our Communities</h2>
+  <h2 style={{fontSize: '200%', color: 'black', marginBottom:'30px'}}>Discover our Communities</h2>
   <div className='communities'>
 <div className='immg'>
   <Link to='/sports'>
@@ -64,25 +66,22 @@ const Home = () => {
          <h3>Charity</h3>
 </div>
     
-
 </div>
-  {/* <Container><div style={{backgroundColor:'yellow', width:'350px', height:'250px'}}></div></Container>
-  <Container><div style={{backgroundColor:'black', width:'350px', height:'250px'}}></div></Container>
-  <Container><div style={{backgroundColor:'red', width:'350px', height:'250px'}}></div></Container> */}
 
 </Jumbotron>
 
+<JumbotronPage />
 
+{/* <div style={{display:'flex', flexDirection:'row' ,marginLeft:'11%'}}>
 
+<FeaturedPost />
+<FeaturedPost />
+</div> */}
 
       <Jumbotron
         style={{
           background: "white",
-          marginTop:'-21%'
-          // height: "300px",
-          // display: "flex",
-          // flexDirection: "column",
-          // position: "relative",
+          marginLeft:'2%'
         }}
         fluid
       >
@@ -134,7 +133,6 @@ const Home = () => {
           </div>
         </Container>
       </Jumbotron>
-
 
 
       <FooterPage />
