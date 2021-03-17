@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { getEvents } from "../../js/actions/gettingActions";
 import EventCard from "./EventCard";
-import './Eventlist.css'
+import "./Eventlist.css";
+import { paginate } from "../../pagination/paginate";
+import Pagination from "../../pagination/pagination";
 
 function EventList({ activity, searched, dateT }) {
   function convertTime(time) {
@@ -20,19 +22,42 @@ function EventList({ activity, searched, dateT }) {
   useEffect(() => {
     getAllEvents();
   }, []);
+
+  //pagination
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 6;
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+  const test = events
+    .filter((event) =>
+      event.activity == activity).map((event) =>
+        <EventCard key={event.id} event={event} />
+    )
+    .reverse(); 
+  const getPageData = () => {
+    const paginationData = paginate(test, currentPage, pageSize);
+    return {
+      totalCount: events
+        .map((event) =>
+          event.activity == activity ? (
+            <EventCard key={event.id} event={event} />
+          ) : null
+        )
+        .reverse().length, 
+      data: paginationData,
+    };
+  };
+
+  const { totalCount, data } = getPageData();
+
+  //pagination
+
   if (dateT && searched) {
     return (
-      <div
-        className="affichage"
-        // style={{
-        //   display: "flex",
-        //   justifyContent: "space-around",
-        //   flexWrap: "wrap",
-        //   margin: "20px 80px 40px 80px",
-        //   width: "1100px",
-        //   // backgroundColor: "#FFCE01",
-        // }}
-      >
+      <div className="affichage">
         {events
           .filter((event) => convertTime(event.date) == convertTime(dateT))
           .filter(
@@ -49,24 +74,14 @@ function EventList({ activity, searched, dateT }) {
               <EventCard key={event.id} event={event} />
             ) : null
           )}
-        <div className='foot'>
+        <div className="foot">
           <h2></h2>
         </div>
       </div>
     );
   } else if (dateT) {
     return (
-      <div
-      className="affichage"
-        // style={{
-        //   display: "flex",
-        //   justifyContent: "space-around",
-        //   flexWrap: "wrap",
-        //   margin: "20px 80px 40px 80px",
-        //   width: "1100px",
-          // backgroundColor: "#FFCE01",
-        // }}
-      >
+      <div className="affichage">
         {console.log(convertTime(dateT))}
         {events
           .filter((event) => convertTime(event.date) == convertTime(dateT))
@@ -76,7 +91,7 @@ function EventList({ activity, searched, dateT }) {
             ) : null
           )
           .reverse()}
-        <div className='foot'>
+        <div className="foot">
           <h2></h2>
         </div>
       </div>
@@ -84,15 +99,7 @@ function EventList({ activity, searched, dateT }) {
   } else if (searched) {
     return (
       <div
-      className="affichage"
-        // style={{
-        //   display: "flex",
-        //   justifyContent: "space-around",
-        //   flexWrap: "wrap",
-        //   margin: "20px 80px 40px 80px",
-        //   width: "1100px",
-        //   // backgroundColor: "#FFCE01",
-        // }}
+        className="affichage"
       >
         {events
           .filter(
@@ -109,34 +116,26 @@ function EventList({ activity, searched, dateT }) {
             ) : null
           )
           .reverse()}
-        <div className='foot'>
+        <div className="foot">
           <h2></h2>
         </div>
       </div>
     );
   }
   return (
-    <div
-    className="affichage"
-      // style={{
-      //   display: "flex",
-      //   justifyContent: "space-around",
-      //   flexWrap: "wrap",
-      //   margin: "20px 80px 40px 80px",
-      //   width: "1100px",
-      //   // backgroundColor: "#FFCE01",
-      // }}
-    >
-      {/* {console.log("hhhh", events)}
-      {console.log("participate", events[0])} */}
-
-      {events
-        .map((event) =>
-          event.activity == activity ? (
-            <EventCard key={event.id} event={event} />
-          ) : null
-        )
-        .reverse()}
+    <div>
+      <div className="affichage">
+        {data}
+      </div>
+      <div>
+        <Pagination
+          itemsCount={totalCount}
+          pageSize={pageSize}
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
+        />
+        page {currentPage} of {Math.ceil(totalCount / pageSize)}
+      </div>
     </div>
   );
 }
