@@ -9,6 +9,8 @@ import './Home.css'
 import cover from '../../photos/couvre.jpg'
 import FeaturedPost from "./Posts";
 import JumbotronPage from "./About";
+import Presenter from './Presenter'
+
 
 const Home = () => {
   const history = useHistory();
@@ -70,13 +72,12 @@ const Home = () => {
 
 </Jumbotron>
 
+
+<Presenter />
+
 <JumbotronPage />
 
-{/* <div style={{display:'flex', flexDirection:'row' ,marginLeft:'11%'}}>
 
-<FeaturedPost />
-<FeaturedPost />
-</div> */}
 
       <Jumbotron
         style={{
@@ -89,12 +90,9 @@ const Home = () => {
           fluid
           className="p-3"
           style={{
-            // display: "flex",
-            // flexDirection: "column",
             position: "relative",
           }}
         >
-          {/* <h1 className="display-3">Welcome To Home Page</h1> */}
           <Image
             src={cover}
             fluid

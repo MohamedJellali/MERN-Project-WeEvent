@@ -31,37 +31,15 @@ const AppNavbar = () => {
   const dispatch = useDispatch();
   const isAuth = useSelector((state) => state.authReducer.isAuth);
 
-  // const getTheUser = () => {
-  //   dispatch(getAuthUser());
-  // };
-  // useEffect(() => {
-  //   getTheUser();
-  // }, []);
-
-  // const user = useSelector((state) => state.gettingReducer.user);
   const user = useSelector((state) => state.authReducer.user);
 
   return (
     <div>
       <Navbar
         className="bar"
-        // style={{
-        //   textDecoration: "none",
-        //   backgroundColor: "rgba(255, 255, 255, 0.7)",
-        //   // backgroundColor: "white",
-        //   boxShadow: "0 2px 4px 0 rgba(0,0,0,.2)",
-        //   position: "fixed",
-        //   right: "0",
-        //   left: "0",
-        //   top: "0",
-        //   zIndex: "1030",
-          
-        // }}
         dark
       >
         <DrawerComponent />
-        {/* <SandwichButton /> */}
-        {/* {isAuth ? <p style={{color: "Green"}}>Connected</p> : null} */}
         <NavbarBrand
           tag={() => (
             <Link
@@ -82,11 +60,6 @@ const AppNavbar = () => {
             </Link>
           )}
         />
-        {/* <NavItem>
-          <Button onClick={() => history.push("/sports")}>Sports</Button>
-          <Button onClick={() => history.push("/outdoor")}>Outdoors</Button>
-          <Button onClick={() => history.push("/arts")}>Arts</Button>
-        </NavItem> */}
         <Nav className="text-white">
           <NavItem className="p-2">
             <Button
