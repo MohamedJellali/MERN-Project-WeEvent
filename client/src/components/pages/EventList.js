@@ -40,13 +40,7 @@ function EventList({ activity, searched, dateT }) {
   const getPageData = () => {
     const paginationData = paginate(test, currentPage, pageSize);
     return {
-      totalCount: events
-        .map((event) =>
-          event.activity == activity ? (
-            <EventCard key={event.id} event={event} />
-          ) : null
-        )
-        .reverse().length, 
+      totalCount: test.length, 
       data: paginationData,
     };
   };

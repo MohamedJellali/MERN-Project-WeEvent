@@ -96,7 +96,7 @@ const Dashboard = () => {
           <Button onClick={() => setCateg("Running")}>Running</Button>
           <Button onClick={() => setCateg("Fitness")}>Fitness</Button>
           <Button onClick={() => setCateg("Biking")}>Biking</Button>
-          <Button onClick={() => setCateg("Camping/Hiking")}>
+          <Button onClick={() => setCateg("CampingHiking")}>
             Camping/Hiking
           </Button>
           <Button onClick={() => setCateg("Yoga")}>
@@ -228,7 +228,7 @@ const Dashboard = () => {
           <Button onClick={() => setCateg("Running")}>Running</Button>
           <Button onClick={() => setCateg("Fitness")}>Fitness</Button>
           <Button onClick={() => setCateg("Biking")}>Biking</Button>
-          <Button onClick={() => setCateg("Camping/Hiking")}>
+          <Button onClick={() => setCateg("CampingHiking")}>
             Camping/Hiking
           </Button>
           <Button onClick={() => setCateg("Yoga")}>
