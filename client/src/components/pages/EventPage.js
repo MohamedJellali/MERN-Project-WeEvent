@@ -1,27 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import clsx from "clsx";
-import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
-import CardMedia from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
-import CardActions from "@material-ui/core/CardActions";
-import Collapse from "@material-ui/core/Collapse";
-import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
 import { red } from "@material-ui/core/colors";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import ShareIcon from "@material-ui/icons/Share";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
 import DoneIcon from "@material-ui/icons/Done";
 import Button from "@material-ui/core/Button";
-import ShareButton from "react-web-share-button";
 import DoneAllIcon from "@material-ui/icons/DoneAll";
-import CloseIcon from "@material-ui/icons/Close";
-import CancelRoundedIcon from "@material-ui/icons/CancelRounded";
-import ClearRoundedIcon from "@material-ui/icons/ClearRounded";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -32,7 +16,6 @@ import { getAuthUser } from "../../js/actions/authActions";
 
 import { FacebookShareButton } from "react-share";
 
-import { FacebookShareCount } from "react-share";
 
 import { FacebookIcon, TwitterShareButton, TwitterIcon } from "react-share";
 
@@ -99,9 +82,9 @@ export default function EventPage({ match }) {
         return "https://static.toiimg.com/img/62488235/Master.jpg"
       case "Fitness":
         return "https://foreverfitscience.com/wp-content/uploads/2019/06/article2_ffs_6.12.19.jpg"
-      case "Camping/Hiking":
+      case "CampingHiking":
         return "https://cf.ltkcdn.net/camping/images/orig/257248-1600x1030-group-camping-games-activities-adults.jpg"
-      case "Yoga/Meditation":
+      case "Yoga":
         return "https://ad962edbae8ba7b03b7f-d10007df79b5b7a4e475a291e50a08cf.ssl.cf3.rackcdn.com/2189/ouvrir-un-studio-de-yoga.jpg"
       case "Painting":
         return "https://lessonsgowhere.com.sg/thumbnails/535x357/uploads/2014/05/21/Colourful%20Notes%20Art%20Class.jpg"
