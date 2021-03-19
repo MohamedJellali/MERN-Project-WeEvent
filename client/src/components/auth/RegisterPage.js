@@ -54,7 +54,7 @@ const RegisterPage = (props) => {
     >
       <div
         style={{
-          backgroundColor: "rgba(255,255,255,0.5)",
+          backgroundColor: "rgba(255,255,255,0.7)",
           //   backgroundColor: "rgba(0,0,0,0.8)",
           display: "flex",
           flexDirection: "column",

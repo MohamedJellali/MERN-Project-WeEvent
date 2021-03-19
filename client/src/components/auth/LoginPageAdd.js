@@ -7,9 +7,7 @@ import CompareArrowsIcon from "@material-ui/icons/CompareArrows";
 import ConfirmModal from "../pages/ModalAlert";
 
 const LoginPageAdd = (props) => {
-  // const error = useSelector((state) => state.authReducer.error)
-  // console.log(error)
-  // const events = useSelector((state) => state.gettingReducer.events);
+
 
   const isAuth = useSelector((state) => state.authReducer.isAuth);
 
@@ -54,7 +52,7 @@ if(isAuth){
     >
       <div
         style={{
-          backgroundColor: "rgba(255,255,255,0.5)",
+          backgroundColor: "rgba(255,255,255,0.7)",
           //   backgroundColor: "rgba(0,0,0,0.8)",
           display: "flex",
           flexDirection: "column",

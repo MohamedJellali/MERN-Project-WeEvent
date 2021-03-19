@@ -17,34 +17,10 @@ const addEventRules = () => [
     "Please specify the governorate where you want organize the event"
   ).notEmpty(),
   body("date", "Please specify the date and time of the event").notEmpty(),
-  //date in future
-  // body('date').custom((value, { req }) => {
-  //   var time = new Date();
-  //   var houractual = time.getHours();
-  //   var dayactual = time.getDay();
-  //   var hour = value.getHours();
-  //   var day = value.getDay();
-  //   console.log(value)
-  //   if (houractual > hour && dayactual > day ) {
-  //     throw new Error('date must be in future');
-  //   } 
-  //   return true;
-  // }),
+
 ];
 
 
-// const myMiddleware = (req, res, next) => {
-//   var time = new Date();
-//   var hour = time.getHours();
-//   var day = time.getDay();
-//   if (day >= 1 && day < 6 && hour >= 9 && hour < 17) {
-//     console.log(hour, day);
-//     next();
-//   } else {
-//     res.render("closed");
-//     console.log(hour, day);
-//   }
-// };
 
 const validatorEvent = (req, res, next) => {
   const errors = validationResult(req);

@@ -59,7 +59,7 @@ export const deleteUser = (formData) => async (dispatch) => {
       payload: formData.userId,
     });
   } catch (error) {
-    console.log(error);
+    console.log(error);  
   }
 };
 

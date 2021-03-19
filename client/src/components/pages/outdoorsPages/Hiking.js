@@ -58,13 +58,13 @@ function Hiking() {
             placeholder="Search"
             value={searched}
             name="Search"
-            style={{ borderRadius: "30px", width: "400px" }}
+            style={{ borderRadius: "30px", width: "400px", outline:'none' }}
             onChange={(e) => setSearched(e.target.value)}
           />
 
           <input
             type="date"
-            style={{ borderRadius: "30px", width: "200px" }}
+            style={{ borderRadius: "30px", width: "200px", outline:'none' }}
             placeholder="date"
             value={dateT}
             name="date"
